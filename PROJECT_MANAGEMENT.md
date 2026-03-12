@@ -99,7 +99,7 @@ Example:
 
 [ ] Basketball Fruit — sprite + scene
 * Desc: Single fruit type. Scene with sprite. No traits yet (P1).
-* Assignee:
+* Assignee: Noah
 * Status: Not Started
 
 [ ] Fruit — grid movement behavior
