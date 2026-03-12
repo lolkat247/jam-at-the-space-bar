@@ -30,3 +30,9 @@ func _process(delta: float) -> void:
 	# check for catastrophy
 	if delta_beat > secs_per_beat:
 		print_debug("More than one beat has passed per frame uh oh")
+		
+func get_beat_phase() -> float:
+	# 0.0 = just hit a beat, 1.0 = about to hit the next
+	if bpm == 0.0:
+		return 0.0
+	return delta_beat / (60.0 / bpm)
