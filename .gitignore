@@ -1,0 +1,14 @@
+# Godot-specific
+.godot/
+*.uid          # Godot 4.4+ UID files (optional, see note)
+
+# Export/build artifacts
+export/
+*.apk
+*.aab
+*.exe
+*.x86_64
+
+# OS junk
+.DS_Store
+Thumbs.db
