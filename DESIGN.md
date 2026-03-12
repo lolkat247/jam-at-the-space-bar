@@ -10,6 +10,10 @@
 2. **Brew** — return to the bar and combine fruits into a jar via the rhythm minigame
 3. **Serve** — serve the jar to a customer and receive a rating based on the brew
 
+### Failure Criteria
+- Too many unsatisfied customers
+- A low critic rating
+
 ## Scenes
 
 Navigate between scenes with teleporters that are colored and lined up in the bar.
