@@ -3,10 +3,11 @@
 ## Format
 
 - 2D pixel art, 32×32 tile/sprite size
+- Crypt of the NecroDancer-style: everything moves on the beat
 
 ## Core Loop
 
-1. **Forage** — enter an overworld scene and catch as many fruits as you can in ~30 seconds
+1. **Forage** — enter an overworld scene ~~and catch as many fruits as you can in ~30 seconds~~ and gather fruits
 2. **Brew** — return to the bar and combine fruits into a jar via the rhythm minigame
 3. **Serve** — serve the jar to a customer and receive a rating based on the brew
 
@@ -30,9 +31,8 @@ Navigate between scenes with teleporters that are colored and lined up in the ba
 ## Minigames
 
 ### Foraging (Overworld)
-- Crypt of the NecroDancer-style: everything moves on the beat
 - Player and fruits share a grid; intercept a fruit by landing on its tile on-beat
-- ~30 second rounds — grab as much as you can
+- ~~\~30 second rounds — grab as much as you can~~ 
 - Countdown: 1, 2, 3, go
 
 ### Brewing (Bar)
