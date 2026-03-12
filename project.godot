@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 BeatClock="*uid://b0s3uy33qysyg"
+Global="*uid://1hyfufp7vobv"
 
 [display]
 
