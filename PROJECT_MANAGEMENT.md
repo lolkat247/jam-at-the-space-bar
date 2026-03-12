@@ -87,15 +87,20 @@ Example:
 - Assignee:
 - Status: Not Started
 
+[ ] Player — grid movement collision check
+- Desc: Add collision detection to grid movement so the player can't walk through walls/obstacles. Depends on tilemap collision layers being set up. Uses move_and_collide or raycast against the tilemap.
+- Assignee:
+- Status: Not Started
+
 [ ] Overworld — tilemap + tile assets
 - Desc: Grid-based tilemap for the foraging scene. Needs walkable tiles and boundaries.
 - Assignee:
 - Status: Not Started
 
-[ ] Overworld — background music
+[x] Overworld — background music
 - Desc: Music track that plays in the overworld and drives the beat clock BPM. Placeholder song for now?
-- Assignee:
-- Status: Not Started
+- Assignee: Jake
+- Status: Done
 
 ---
 
