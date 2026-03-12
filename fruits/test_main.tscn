@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bv00hojkhrp5o"]
+
+[ext_resource type="PackedScene" uid="uid://dmrpbwqqlp0lw" path="res://fruits/test_keys.tscn" id="1_x583c"]
+[ext_resource type="PackedScene" uid="uid://d37dwfxksjt2q" path="res://fruits/basket_bulb.tscn" id="2_e3fei"]
+
+[node name="Node" type="Node" unique_id=1324695424]
+
+[node name="Test_Keys" parent="." unique_id=1633421232 instance=ExtResource("1_x583c")]
+
+[node name="BasketBulb" parent="." unique_id=313780979 instance=ExtResource("2_e3fei")]
+position = Vector2(130, 135)
+
+[node name="BasketBulb2" parent="." unique_id=1469684721 instance=ExtResource("2_e3fei")]
+position = Vector2(236, 328)
+
+[node name="BasketBulb3" parent="." unique_id=70371896 instance=ExtResource("2_e3fei")]
+position = Vector2(811, 188)

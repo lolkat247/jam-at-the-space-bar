@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://d37dwfxksjt2q"]
+
+[ext_resource type="Texture2D" uid="uid://fageadtnel2r" path="res://sprites/Fruit+.png" id="1_1lpxq"]
+[ext_resource type="Script" uid="uid://bd6xvvxkn5gdf" path="res://fruits/basket_bulb.gd" id="1_i1q84"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1q84"]
+atlas = ExtResource("1_1lpxq")
+region = Rect2(544, 16, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1lpxq"]
+
+[node name="BasketBulb" type="Area2D" unique_id=313780979]
+script = ExtResource("1_i1q84")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=119245469]
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_i1q84")
+region_rect = Rect2(0, 100, 0, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=477848891]
+position = Vector2(0, 0.5)
+scale = Vector2(1.6, 1.6)
+shape = SubResource("CircleShape2D_1lpxq")

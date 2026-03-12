@@ -72,8 +72,8 @@ Example:
 
 [ ] Global beat clock autoload
 * Desc: Autoload singleton that emits a beat signal driven by the background music BPM. Everything on-beat depends on this.
-* Assignee:
-* Status: Not Started
+* Assignee: Ethan
+* Status: Started
 
 [ ] Player — sprite + scene
 * Desc: Basic player scene with placeholder or final sprite.
@@ -100,7 +100,7 @@ Example:
 [ ] Basketball Fruit — sprite + scene
 * Desc: Single fruit type. Scene with sprite. No traits yet (P1).
 * Assignee: Noah
-* Status: Not Started
+* Status: Completed
 
 [ ] Fruit — grid movement behavior
 * Desc: Fruit moves one tile per beat in a pattern (random or fixed TBD). Listens to beat clock.
