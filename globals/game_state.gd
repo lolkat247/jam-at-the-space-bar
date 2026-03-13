@@ -1,14 +1,12 @@
 extends Node
 
-# Held items — one slot, up to 3 of the same item
-var held_item: String = ""
-var held_count: int = 0
-const MAX_HELD: int = 3
-
 # Customer state
 var current_order: Dictionary = {}
 var satisfied_customers: int = 0
 var unsatisfied_customers: int = 0
+
+# Jam held by player (empty string = no jam)
+var held_jam: String = ""
 
 # Score
 var score: int = 0
@@ -18,53 +16,31 @@ var phase: String = "bar"
 var _phase_before_pause: String = ""
 
 
-func pick_up(item_name: String) -> bool:
-	if held_item == "" or held_item == item_name:
-		if held_count < MAX_HELD:
-			held_item = item_name
-			held_count += 1
-			add_score()
-			return true
-	return false
-
-
-func drop_one() -> String:
-	if held_count <= 0:
-		return ""
-	var item = held_item
-	held_count -= 1
-	if held_count <= 0:
-		held_item = ""
-	return item
-
-
-func drop_all() -> void:
-	held_item = ""
-	held_count = 0
-
-
 func craft_jam(fruit_name: String, jam_name: String) -> bool:
-	if held_item == fruit_name and held_count >= 3:
-		drop_all()
-		held_item = jam_name
-		held_count = 1
-		add_score()
-		return true
-	return false
+	if not Inventory.has_fruit(fruit_name, 3):
+		return false
+	Inventory.remove_fruit(fruit_name, 3)
+	held_jam = jam_name
+	add_score()
+	return true
 
 
 func serve_jam() -> bool:
-	if held_item == "" or current_order.is_empty():
+	if held_jam == "" or current_order.is_empty():
 		return false
-	if held_item == current_order.get("jam", ""):
+	var jam = held_jam
+	held_jam = ""
+	if jam == current_order.get("jam", ""):
 		satisfied_customers += 1
 		add_score()
-		drop_one()
 		return true
 	else:
 		unsatisfied_customers += 1
-		drop_one()
 		return false
+
+
+func trash_jam() -> void:
+	held_jam = ""
 
 
 func add_score(points: int = 10) -> void:
@@ -82,11 +58,10 @@ func unpause() -> void:
 
 
 func reset() -> void:
-	held_item = ""
-	held_count = 0
 	current_order = {}
 	satisfied_customers = 0
 	unsatisfied_customers = 0
+	held_jam = ""
 	score = 0
 	phase = "bar"
 	_phase_before_pause = ""
