@@ -3,15 +3,21 @@
 [ext_resource type="Script" uid="uid://cbcljxtjidmvf" path="res://tavern/tavern.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://b2rj3ua1iq0a3" path="res://sprites/space_tavern.png" id="2_bg"]
 [ext_resource type="PackedScene" uid="uid://dyn7jrku6byol" path="res://player/Player.tscn" id="3_player"]
+[ext_resource type="PackedScene" uid="uid://b3nj7t4j1n8cs" path="res://teleporter/teleporter.tscn" id="4_teleporter"]
 
 [node name="Tavern" type="Node2D" unique_id=1550033882]
 script = ExtResource("1_script")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=658423916]
-position = Vector2(-50, -51)
+position = Vector2(-58, -57)
+scale = Vector2(0.92, 0.92)
 texture = ExtResource("2_bg")
 centered = false
 
+[node name="Teleporter" parent="." unique_id=1341047698 instance=ExtResource("4_teleporter")]
+position = Vector2(763, 402.00003)
+scale = Vector2(3.78, 3.78)
+
 [node name="Player" parent="." unique_id=460959443 instance=ExtResource("3_player")]
-position = Vector2(115.99999, 248.99998)
-scale = Vector2(0.1, 0.1)
+position = Vector2(94, 343)
+scale = Vector2(0.26, 0.26)
