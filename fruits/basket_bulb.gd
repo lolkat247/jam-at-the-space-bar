@@ -12,7 +12,6 @@ func _on_body_entered(body):
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	position = Vector2(200, 200)
 	# position = TileMovementManager._snap_to_grid(position)
 	body_entered.connect(_on_body_entered)
 	BeatClock.beat.connect(_on_beat)
@@ -43,8 +42,8 @@ func _on_beat() -> void:
 	_is_moving = true
 	var duration: float = (60.0 / maxf(BeatClock.bpm, 1.0)) * TileMovementManager.tween_fraction
 	var tween := create_tween()
-	tween.tween_property(self, "position", target_pos, duration)\
-		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	#tween.tween_property(self, "position", target_pos, duration)\
+		#.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween.finished.connect(_on_tween_finished)
 
 func _on_tween_finished() -> void:
