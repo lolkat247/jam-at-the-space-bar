@@ -126,8 +126,8 @@ Example:
 
 [ ] Player — inventory
 - Desc: Tracks how many of each fruit the player is holding.
-- Assignee:
-- Status: Not Started
+- Assignee: Anthony
+- Status: In Progress
 
 ---
 
@@ -205,7 +205,7 @@ Example:
 [ ] Customer — order display
 - Desc: Textbox that shows the customer's current jam request.
 - Assignee: Anthony
-- Status: Started
+- Status: Done
 
 [ ] Customer — enter bar sequence
 - Desc: Customer walks in and sits when the bar scene loads.
