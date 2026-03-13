@@ -7,6 +7,8 @@ var _move_queue: Array[Vector2i] = [
 	Vector2i.LEFT,
 ]
 
+var _order_shown: bool = false
+
 var _facing_textures := {
 	Vector2i.DOWN: preload("res://sprites/toast_customer.png"),
 	Vector2i.UP: preload("res://sprites/toast_customer_up.png"),
@@ -35,6 +37,8 @@ func _on_beat() -> void:
 		_queued_direction = next_dir
 		_set_facing(next_dir)
 	if _queued_direction == Vector2i.ZERO:
+		if not _order_shown and _move_queue.size() == 0:
+			_show_order()
 		return
 	if _is_moving:
 		return
@@ -54,3 +58,13 @@ func _on_beat() -> void:
 
 func _on_tween_finished() -> void:
 	_is_moving = false
+
+
+func _show_order() -> void:
+	_order_shown = true
+	GameState.current_order = {
+		"fruit": "basketbulb",
+		"jam": "Basketball Jam",
+		"count": 3,
+	}
+	$OrderBubble.visible = true
