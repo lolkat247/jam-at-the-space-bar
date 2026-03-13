@@ -137,6 +137,11 @@ def main() -> None:
         action="store_true",
         help="Skip color quantization post-processing",
     )
+    parser.add_argument(
+        "--raw",
+        action="store_true",
+        help="Use the prompt as-is, bypassing prefix/suffix wrapping",
+    )
     args = parser.parse_args()
 
     if args.size < 16 or args.size > 1024:
@@ -157,7 +162,10 @@ def main() -> None:
     else:
         size_hint = ""
 
-    full_prompt = PROMPT_PREFIX + size_hint + args.prompt + PROMPT_SUFFIX
+    if args.raw:
+        full_prompt = args.prompt
+    else:
+        full_prompt = PROMPT_PREFIX + size_hint + args.prompt + PROMPT_SUFFIX
 
     print(f"Generating sprite (targeting {args.size}x{args.size} pixel grid)...")
     response = client.models.generate_content(
