@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-BeatClock="*uid://b0s3uy33qysyg"
 Global="*uid://1hyfufp7vobv"
+BeatClock="*uid://b0s3uy33qysyg"
 TileMovementManager="*uid://oxx0p1li0o4d"
 
 [display]

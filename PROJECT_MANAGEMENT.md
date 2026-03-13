@@ -112,7 +112,7 @@ Example:
 [ ] Fruit — grid movement behavior
 - Desc: Fruit moves one tile per beat in a pattern (random or fixed TBD). Listens to beat clock.
 - Assignee: Ethan
-- Status: Started
+- Status: Done
 
 [ ] Fruit — spawner
 - Desc: Places fruits on random tiles when the overworld round starts.

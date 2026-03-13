@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
-## How long the slide tween takes, as a fraction of one beat (0.0–1.0).
-@export var tween_fraction: float = 0.25
+
 
 var _queued_direction: Vector2i = Vector2i.ZERO
 var _is_moving: bool = false
@@ -39,7 +38,7 @@ func _on_beat() -> void:
 	# see task "Player — grid movement collision check"
 
 	_is_moving = true
-	var duration: float = (60.0 / maxf(BeatClock.bpm, 1.0)) * tween_fraction
+	var duration: float = (60.0 / maxf(BeatClock.bpm, 1.0)) * TileMovementManager.tween_fraction
 	var tween := create_tween()
 	tween.tween_property(self, "position", target_pos, duration)\
 		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
@@ -48,4 +47,3 @@ func _on_beat() -> void:
 
 func _on_tween_finished() -> void:
 	_is_moving = false
-	position = TileMovementManager.get_tile_pos(position)
