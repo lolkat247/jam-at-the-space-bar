@@ -1,6 +1,5 @@
 # Godot-specific
 .godot/
-*.uid          # Godot 4.4+ UID files (optional, see note)
 
 # Export/build artifacts
 export/
@@ -22,5 +21,3 @@ dev-tools/sprite-gen-output/
 # OS junk
 .DS_Store
 Thumbs.db
-
-*.import

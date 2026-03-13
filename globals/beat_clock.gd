@@ -2,37 +2,38 @@ extends Node
 
 signal beat
 
-@export var bpm = 140.0
-@export var time_passed = 0.0
+@export var bpm: float = 140.0
 
-	
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
+var _audio_player: AudioStreamPlayer = null
+var _last_beat_index: int = -1
+var _delta_accum: float = 0.0
 
-# delta after previous beat
-var delta_beat = 0.0
+func sync_to_audio(player: AudioStreamPlayer) -> void:
+	_audio_player = player
+	_last_beat_index = -1
 
 func _process(delta: float) -> void:
 	if bpm == 0.0:
-		bpm = 1.0
-		
+		return
 	var secs_per_beat: float = 60.0 / bpm
-	
-	delta_beat += delta
-	time_passed += delta
-	
-	# assumes less than one beat has passed per frame
-	if delta_beat > secs_per_beat:
-		delta_beat -= secs_per_beat
+	var beat_index: int
+
+	if _audio_player and _audio_player.playing:
+		var pos = _audio_player.get_playback_position()
+		beat_index = int(pos / secs_per_beat)
+	else:
+		_delta_accum += delta
+		beat_index = int(_delta_accum / secs_per_beat)
+
+	if beat_index != _last_beat_index:
+		_last_beat_index = beat_index
 		beat.emit()
-		
-	# check for catastrophy
-	if delta_beat > secs_per_beat:
-		print_debug("More than one beat has passed per frame uh oh")
-		
+
 func get_beat_phase() -> float:
-	# 0.0 = just hit a beat, 1.0 = about to hit the next
 	if bpm == 0.0:
 		return 0.0
-	return delta_beat / (60.0 / bpm)
+	var secs_per_beat: float = 60.0 / bpm
+	if _audio_player and _audio_player.playing:
+		var pos = _audio_player.get_playback_position()
+		return fmod(pos, secs_per_beat) / secs_per_beat
+	return fmod(_delta_accum, secs_per_beat) / secs_per_beat

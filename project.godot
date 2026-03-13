@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Global="*res://globals/global.gd"
 BeatClock="*res://globals/beat_clock.gd"
+MusicManager="*res://globals/music_manager.gd"
 TileMovementManager="*res://globals/tile_movement_manager.gd"
 
 [display]
