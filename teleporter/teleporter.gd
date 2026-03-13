@@ -20,7 +20,7 @@ func _on_body_entered(body: Node2D) -> void:
 		body.set_process(false)
 		body.set_physics_process(false)
 		_player_base_pos = body.position
-		MusicManager.transition_at_loop_end("res://title/title.tscn", "title")
+		MusicManager.transition_at_loop_end("res://overworld/test_overworld.tscn", "bar")
 
 
 func _process(_delta: float) -> void:
