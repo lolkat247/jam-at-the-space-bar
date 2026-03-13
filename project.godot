@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 BeatClock="*uid://b0s3uy33qysyg"
 Global="*uid://1hyfufp7vobv"
+TileMovementManager="*uid://oxx0p1li0o4d"
 
 [display]
 

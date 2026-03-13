@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-const TILE_SIZE = 32
 ## How long the slide tween takes, as a fraction of one beat (0.0–1.0).
 @export var tween_fraction: float = 0.25
 
@@ -9,7 +8,7 @@ var _is_moving: bool = false
 
 
 func _ready() -> void:
-	position = _snap_to_grid(position)
+	position = TileMovementManager._snap_to_grid(position)
 	BeatClock.beat.connect(_on_beat)
 
 
@@ -34,7 +33,7 @@ func _on_beat() -> void:
 	var dir := _queued_direction
 	_queued_direction = Vector2i.ZERO
 
-	var target_pos: Vector2 = position + Vector2(dir * TILE_SIZE)
+	var target_pos: Vector2 = position + Vector2(dir * Global.TILE_SIZE)
 
 	# TODO: collision check — depends on tilemap being set up
 	# see task "Player — grid movement collision check"
@@ -49,18 +48,4 @@ func _on_beat() -> void:
 
 func _on_tween_finished() -> void:
 	_is_moving = false
-	position = _snap_to_grid(position)
-
-
-func get_tile_pos() -> Vector2i:
-	return Vector2i(
-		roundi(position.x / TILE_SIZE),
-		roundi(position.y / TILE_SIZE)
-	)
-
-
-func _snap_to_grid(pos: Vector2) -> Vector2:
-	return Vector2(
-		roundf(pos.x / TILE_SIZE) * TILE_SIZE,
-		roundf(pos.y / TILE_SIZE) * TILE_SIZE
-	)
+	position = TileMovementManager.get_tile_pos(position)
