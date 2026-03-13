@@ -17,13 +17,13 @@ In order to use the key board input, use the following action events in your scr
 ```python
 # Example of how you can go about using action events
 if Input.is_action_pressed("arrow_right"):
-    # right key functionality here
+	# right key functionality here
 if Input.is_action_pressed("arrow_left"):
-    # left key functionality here
+	# left key functionality here
 if Input.is_action_pressed("arrow_down"):
-    # down key functionality here
+	# down key functionality here
 if Input.is_action_pressed("arrow_up"):
-    # up key functionality here
+	# up key functionality here
 if Input.is_action_pressed("space_press"):
-    # space key functionality here
+	# space key functionality here
 ```
