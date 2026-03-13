@@ -9,6 +9,9 @@ export/
 *.exe
 *.x86_64
 
+# Dev tools generated output
+dev-tools/sprite-gen-output/*.png
+
 # OS junk
 .DS_Store
 Thumbs.db
