@@ -15,6 +15,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wnvi2"]
+size = Vector2(232, 346)
 
 [node name="Player" type="CharacterBody2D" unique_id=1628946273]
 slide_on_ceiling = false
@@ -24,4 +25,5 @@ script = ExtResource("1_ulp21")
 sprite_frames = SubResource("SpriteFrames_3c3w1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1432382558]
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_wnvi2")
