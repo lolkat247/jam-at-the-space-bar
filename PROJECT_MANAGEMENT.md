@@ -204,8 +204,8 @@ Example:
 
 [ ] Customer — order display
 - Desc: Textbox that shows the customer's current jam request.
-- Assignee:
-- Status: Not Started
+- Assignee: Anthony
+- Status: Started
 
 [ ] Customer — enter bar sequence
 - Desc: Customer walks in and sits when the bar scene loads.

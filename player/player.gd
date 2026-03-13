@@ -45,7 +45,10 @@ func _on_beat() -> void:
 	var dir := _queued_direction
 	_queued_direction = Vector2i.ZERO
 
-	var target_pos: Vector2 = position + Vector2(dir * Global.TILE_SIZE)
+	var tile_size = Global.TILE_SIZE
+	if get_parent() is Node and get_parent().name == "TestOverworld":
+		tile_size = Global.OVERWORLD_TILE_SIZE
+	var target_pos: Vector2 = position + Vector2(dir * tile_size)
 
 	# TODO: collision check — depends on tilemap being set up
 	# see task "Player — grid movement collision check"
