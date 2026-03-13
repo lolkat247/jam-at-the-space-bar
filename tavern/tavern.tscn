@@ -17,6 +17,8 @@ centered = false
 [node name="Teleporter" parent="." unique_id=1341047698 instance=ExtResource("4_teleporter")]
 position = Vector2(763, 402.00003)
 scale = Vector2(3.78, 3.78)
+target_scene = "res://overworld/test_overworld.tscn"
+target_track = "forage"
 
 [node name="Player" parent="." unique_id=460959443 instance=ExtResource("3_player")]
 position = Vector2(94, 343)
