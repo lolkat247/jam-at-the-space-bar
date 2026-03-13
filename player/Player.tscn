@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dyn7jrku6byol"]
 
 [ext_resource type="Script" uid="uid://c8md2gwbk1e0g" path="res://player/player.gd" id="1_ulp21"]
-[ext_resource type="Texture2D" path="res://sprites/astronaut_chef.png" id="2_3c3w1"]
+[ext_resource type="Texture2D" uid="uid://kg4efy3uowv1" path="res://sprites/astronaut_chef.png" id="2_3c3w1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3c3w1"]
 animations = [{
