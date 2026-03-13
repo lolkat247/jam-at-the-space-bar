@@ -2,8 +2,15 @@
 
 [ext_resource type="Script" uid="uid://bjt510apsrvhm" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dyn7jrku6byol" path="res://player/Player.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://d37dwfxksjt2q" path="res://fruits/basket_bulb.tscn" id="3_h2yge"]
 
 [node name="Main" type="Node" unique_id=1211675263]
 script = ExtResource("1_ig7tw")
 
 [node name="Player" parent="." unique_id=1628946273 instance=ExtResource("2_0xm2m")]
+
+[node name="FruitTimer" type="Timer" parent="." unique_id=602364628]
+
+[node name="BasketBulb" parent="." unique_id=313780979 instance=ExtResource("3_h2yge")]
+
+[connection signal="timeout" from="FruitTimer" to="." method="_on_fruit_timer_timeout"]

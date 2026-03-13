@@ -4,7 +4,6 @@ signal fruit_collected(fruit_type)
 
 @export var fruit_type: String = "BasketBulb"
 var _is_moving = false
-var tween: Tween
 
 func _on_body_entered(body):
 	emit_signal("fruit_collected", fruit_type)
@@ -14,7 +13,6 @@ func _on_body_entered(body):
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	position = Vector2(200, 200)
-	pass
 	# position = TileMovementManager._snap_to_grid(position)
 	body_entered.connect(_on_body_entered)
 	BeatClock.beat.connect(_on_beat)

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c1wvqsawxkmqf"]
+
+[ext_resource type="Script" uid="uid://b67m61d2fwf1d" path="res://fruit_manager.gd" id="1_fdfvb"]
+[ext_resource type="PackedScene" uid="uid://d37dwfxksjt2q" path="res://fruits/basket_bulb.tscn" id="2_f8pom"]
+
+[node name="FruitManager" type="Node" unique_id=760958291]
+script = ExtResource("1_fdfvb")
+
+[node name="BasketBulb" parent="." unique_id=313780979 instance=ExtResource("2_f8pom")]
+
+[node name="FruitSpawnTimer" type="Timer" parent="." unique_id=508258961]
