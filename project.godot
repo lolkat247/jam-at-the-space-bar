@@ -17,9 +17,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*uid://1hyfufp7vobv"
-BeatClock="*uid://b0s3uy33qysyg"
-TileMovementManager="*uid://oxx0p1li0o4d"
+Global="*res://globals/global.gd"
+BeatClock="*res://globals/beat_clock.gd"
+TileMovementManager="*res://globals/tile_movement_manager.gd"
 
 [display]
 
