@@ -1,6 +1,2 @@
-torch
-diffusers
+google-genai
 Pillow
-safetensors
-peft
-accelerate

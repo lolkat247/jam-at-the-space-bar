@@ -9,6 +9,16 @@ export/
 *.exe
 *.x86_64
 
+# Secrets
+.env
+dev-tools/.env
+
+# Dev tools output
+dev-tools/sprite-gen-output/
+
+# Claude Code
+.claude/
+
 # OS junk
 .DS_Store
 Thumbs.db

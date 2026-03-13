@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate consistent 16-bit space-themed pixel art sprites using HuggingFace models."""
+"""Generate consistent 16-bit space-themed pixel art sprites using Google Gemini."""
 
 import argparse
 import os
@@ -8,8 +8,8 @@ import sys
 
 # --- Dependency check ---
 _MISSING = []
-_PKG_MAP = {"PIL": "Pillow"}
-for _pkg in ("torch", "diffusers", "PIL", "safetensors", "peft", "accelerate"):
+_PKG_MAP = {"PIL": "Pillow", "google.genai": "google-genai"}
+for _pkg in ("google.genai", "PIL"):
     try:
         __import__(_pkg)
     except (ImportError, Exception):
@@ -22,102 +22,170 @@ if _MISSING:
     )
     sys.exit(1)
 
-import torch
-from diffusers import StableDiffusionXLPipeline, LCMScheduler
-from PIL import Image
+from google import genai
+from PIL import Image as PILImage
+import io
 
 # --- Constants ---
 PROMPT_PREFIX = (
     "pixel art, 16-bit, space themed, retro game sprite, "
-    "clean pixel edges, limited color palette, dark space background, "
+    "clean pixel edges, plain white background, centered, "
 )
-PROMPT_SUFFIX = ", snes style, game asset, sprite sheet style"
-NEGATIVE_PROMPT = (
-    "3d render, realistic, blurry, photo, watermark, text, "
-    "smooth, gradient, high resolution, modern, oil painting"
-)
-
-
-def get_device() -> str:
-    if torch.cuda.is_available():
-        return "cuda"
-    if torch.backends.mps.is_available():
-        return "mps"
-    return "cpu"
-
-
-def build_pipeline(device: str) -> StableDiffusionXLPipeline:
-    dtype = torch.float16 if device != "cpu" else torch.float32
-
-    pipe = StableDiffusionXLPipeline.from_pretrained(
-        "stabilityai/stable-diffusion-xl-base-1.0",
-        torch_dtype=dtype,
-    )
-    pipe.scheduler = LCMScheduler.from_config(pipe.scheduler.config)
-
-    # Load LoRA adapters
-    pipe.load_lora_weights(
-        "latent-consistency/lcm-lora-sdxl",
-        adapter_name="lcm",
-    )
-    pipe.load_lora_weights(
-        "nerijs/pixel-art-xl",
-        adapter_name="pixel",
-    )
-    pipe.set_adapters(["lcm", "pixel"], adapter_weights=[1.0, 1.2])
-
-    pipe = pipe.to(device)
-    return pipe
-
-
-def postprocess(image: Image.Image) -> Image.Image:
-    small = image.resize((64, 64), Image.NEAREST)
-    big = small.resize((512, 512), Image.NEAREST)
-    return big.quantize(colors=32).convert("RGBA")
+PROMPT_SUFFIX = ", snes style, game asset"
 
 
 def sanitize_filename(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", "_", text.lower()).strip("_")[:80]
 
 
+def load_api_key() -> str:
+    # Check environment first, then .env file
+    key = os.environ.get("GEMINI_API_KEY")
+    if key:
+        return key
+    env_path = os.path.join(os.path.dirname(__file__), ".env")
+    if os.path.exists(env_path):
+        with open(env_path) as f:
+            for line in f:
+                line = line.strip()
+                if line.startswith("GEMINI_API_KEY="):
+                    return line.split("=", 1)[1]
+    print("GEMINI_API_KEY not found. Set it in your environment or in dev-tools/.env", file=sys.stderr)
+    sys.exit(1)
+
+
+def remove_background(image: PILImage.Image, tolerance: int = 30, erode: int = 2) -> PILImage.Image:
+    """Remove background via flood-fill from edges, then erode fringe pixels."""
+    from collections import deque
+
+    image = image.convert("RGBA")
+    pixels = image.load()
+    w, h = image.size
+
+    # Sample background color from corners
+    corners = [pixels[0, 0], pixels[w - 1, 0], pixels[0, h - 1], pixels[w - 1, h - 1]]
+    bg_color = max(set(corners), key=corners.count)
+
+    def matches_bg(x, y):
+        r, g, b, a = pixels[x, y]
+        return (abs(r - bg_color[0]) <= tolerance and
+                abs(g - bg_color[1]) <= tolerance and
+                abs(b - bg_color[2]) <= tolerance)
+
+    # Flood-fill from all edge pixels that match the background
+    visited = set()
+    queue = deque()
+    for x in range(w):
+        for y in (0, h - 1):
+            if matches_bg(x, y):
+                queue.append((x, y))
+                visited.add((x, y))
+    for y in range(h):
+        for x in (0, w - 1):
+            if matches_bg(x, y) and (x, y) not in visited:
+                queue.append((x, y))
+                visited.add((x, y))
+
+    while queue:
+        x, y = queue.popleft()
+        pixels[x, y] = (0, 0, 0, 0)
+        for dx, dy in ((-1, 0), (1, 0), (0, -1), (0, 1)):
+            nx, ny = x + dx, y + dy
+            if 0 <= nx < w and 0 <= ny < h and (nx, ny) not in visited and matches_bg(nx, ny):
+                visited.add((nx, ny))
+                queue.append((nx, ny))
+
+    # Erode: remove opaque pixels that neighbor transparent ones
+    for _ in range(erode):
+        to_clear = []
+        for y in range(h):
+            for x in range(w):
+                if pixels[x, y][3] == 0:
+                    continue
+                for dx, dy in ((-1, 0), (1, 0), (0, -1), (0, 1)):
+                    nx, ny = x + dx, y + dy
+                    if 0 <= nx < w and 0 <= ny < h and pixels[nx, ny][3] == 0:
+                        to_clear.append((x, y))
+                        break
+        for x, y in to_clear:
+            pixels[x, y] = (0, 0, 0, 0)
+
+    return image
+
+
+def postprocess(image: PILImage.Image) -> PILImage.Image:
+    image = remove_background(image)
+    return image.quantize(colors=32).convert("RGBA")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Generate 16-bit space pixel art sprites.")
     parser.add_argument("prompt", help="The sprite description")
-    parser.add_argument("--seed", type=int, default=42, help="Generation seed (default: 42)")
+    parser.add_argument(
+        "--size",
+        type=int,
+        default=512,
+        help="Target pixel grid size, e.g. 16, 32, 64, 512 (default: 512)",
+    )
+    parser.add_argument(
+        "--final",
+        action="store_true",
+        help="Use gemini-3-pro-image-preview for higher quality output",
+    )
     parser.add_argument(
         "--no-postprocess",
         action="store_true",
-        help="Skip pixelation/quantization post-processing",
+        help="Skip color quantization post-processing",
     )
     args = parser.parse_args()
 
-    device = get_device()
-    print(f"Using device: {device}")
+    if args.size < 16 or args.size > 1024:
+        parser.error("--size must be between 16 and 1024")
 
-    print("Loading model and LoRA adapters...")
-    pipe = build_pipeline(device)
+    api_key = load_api_key()
+    client = genai.Client(api_key=api_key)
 
-    full_prompt = PROMPT_PREFIX + args.prompt + PROMPT_SUFFIX
-    generator = torch.Generator(device=device).manual_seed(args.seed)
+    # Tell the model what pixel grid to target
+    if args.size <= 16:
+        size_hint = "16x16 grid, very chunky blocks, minimal detail, "
+    elif args.size <= 32:
+        size_hint = "32x32 grid, chunky pixels, simple shapes, "
+    elif args.size <= 64:
+        size_hint = "64x64 grid, visible pixel blocks, "
+    elif args.size <= 128:
+        size_hint = "128x128 grid, detailed, "
+    else:
+        size_hint = ""
 
-    print("Generating sprite...")
-    result = pipe(
-        prompt=full_prompt,
-        negative_prompt=NEGATIVE_PROMPT,
-        num_inference_steps=8,
-        guidance_scale=1.5,
-        width=512,
-        height=512,
-        generator=generator,
+    full_prompt = PROMPT_PREFIX + size_hint + args.prompt + PROMPT_SUFFIX
+
+    print(f"Generating sprite (targeting {args.size}x{args.size} pixel grid)...")
+    response = client.models.generate_content(
+        model="gemini-3-pro-image-preview" if args.final else "gemini-3.1-flash-image-preview",
+        contents=[full_prompt],
     )
-    image = result.images[0]
+
+    image = None
+    if not response.parts:
+        print("Model returned an empty response. It may have refused the prompt.", file=sys.stderr)
+        sys.exit(1)
+    for part in response.parts:
+        if part.text is not None:
+            print(part.text)
+        elif part.inline_data is not None:
+            image_data = part.inline_data.data
+            image = PILImage.open(io.BytesIO(image_data))
+
+    if image is None:
+        print("No image was generated.", file=sys.stderr)
+        sys.exit(1)
 
     if not args.no_postprocess:
         image = postprocess(image)
 
     output_dir = os.path.join(os.path.dirname(__file__), "sprite-gen-output")
     os.makedirs(output_dir, exist_ok=True)
-    filename = os.path.join(output_dir, f"output_{sanitize_filename(args.prompt)}.png")
+    filename = os.path.join(output_dir, f"{sanitize_filename(args.prompt)}.png")
     image.save(filename)
     print(filename)
 
