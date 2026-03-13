@@ -20,10 +20,10 @@ scale = Vector2(3.78, 3.78)
 target_scene = "res://overworld/test_overworld.tscn"
 target_track = "forage"
 
-[node name="Player" parent="." unique_id=460959443 instance=ExtResource("3_player")]
-position = Vector2(101, 380)
-scale = Vector2(0.26, 0.26)
-
 [node name="Customer" parent="." unique_id=1266712280 instance=ExtResource("5_0xd7u")]
 position = Vector2(642, 778.00006)
 scale = Vector2(1.31, 1.31)
+
+[node name="Player" parent="." unique_id=460959443 instance=ExtResource("3_player")]
+position = Vector2(101, 380)
+scale = Vector2(0.26, 0.26)

@@ -18,7 +18,7 @@ func _on_body_entered(body: Node2D) -> void:
 		_shaking = true
 		_shake_start = Time.get_ticks_msec() / 1000.0
 		_player = body
-		body.position = global_position
+		body.position = global_position + Vector2(0, -35)
 		body._queued_direction = Vector2i.ZERO
 		body.set_process(false)
 		body.set_physics_process(false)
