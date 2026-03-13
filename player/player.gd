@@ -1,9 +1,14 @@
 extends CharacterBody2D
 
-
-
 var _queued_direction: Vector2i = Vector2i.ZERO
 var _is_moving: bool = false
+
+var _facing_textures := {
+	Vector2i.DOWN: preload("res://sprites/astronaut_chef.png"),
+	Vector2i.UP: preload("res://sprites/astronaut_chef_up.png"),
+	Vector2i.LEFT: preload("res://sprites/astronaut_chef_left.png"),
+	Vector2i.RIGHT: preload("res://sprites/astronaut_chef_right.png"),
+}
 
 
 func _ready() -> void:
@@ -15,12 +20,20 @@ func _process(_delta: float) -> void:
 	# Buffer the most recent directional input (last-wins)
 	if Input.is_action_pressed("arrow_right"):
 		_queued_direction = Vector2i.RIGHT
+		_set_facing(Vector2i.RIGHT)
 	elif Input.is_action_pressed("arrow_left"):
 		_queued_direction = Vector2i.LEFT
+		_set_facing(Vector2i.LEFT)
 	elif Input.is_action_pressed("arrow_down"):
 		_queued_direction = Vector2i.DOWN
+		_set_facing(Vector2i.DOWN)
 	elif Input.is_action_pressed("arrow_up"):
 		_queued_direction = Vector2i.UP
+		_set_facing(Vector2i.UP)
+
+
+func _set_facing(dir: Vector2i) -> void:
+	$AnimatedSprite2D.sprite_frames.set_frame("default", 0, _facing_textures[dir])
 
 
 func _on_beat() -> void:
