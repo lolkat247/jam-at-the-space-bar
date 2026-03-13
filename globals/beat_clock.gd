@@ -2,7 +2,7 @@ extends Node
 
 signal beat
 
-@export var bpm = 0.0
+@export var bpm = 140.0
 @export var time_passed = 0.0
 
 	
