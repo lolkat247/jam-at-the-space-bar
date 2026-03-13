@@ -8,6 +8,9 @@ var _current_track: String = ""
 var _pending_scene: String = ""
 var _pending_track: String = ""
 var _pending_carry: bool = false
+var _target_section: int = -1
+
+const BEATS_PER_SECTION: int = 8  # 2 bars of 4/4
 
 var tracks: Dictionary = {
 	"title": preload("res://rendered-music/title.wav"),
@@ -40,20 +43,36 @@ func transition_at_loop_end(scene_path: String, track_name: String, carry: bool 
 	_pending_scene = scene_path
 	_pending_track = track_name
 	_pending_carry = carry
+	# Compute target section: next 2-bar boundary, but if less than 1 bar away, skip to the one after
+	var pos = _get_active_player().get_playback_position()
+	var secs_per_beat = 60.0 / BeatClock.bpm
+	var secs_per_section = secs_per_beat * BEATS_PER_SECTION
+	var secs_per_bar = secs_per_beat * 4
+	var current_section = int(pos / secs_per_section)
+	var time_to_next = (current_section + 1) * secs_per_section - pos
+	if time_to_next < secs_per_bar:
+		_target_section = current_section + 2
+	else:
+		_target_section = current_section + 1
 
 func _process(_delta: float) -> void:
 	var player = _get_active_player()
 	if not player.playing:
 		return
 	var pos = player.get_playback_position()
-	# Detect loop boundary: position wrapped around
-	if pos < _last_pos - 1.0:
-		if _pending_scene != "":
+
+	if _pending_scene != "":
+		var secs_per_beat = 60.0 / BeatClock.bpm
+		var secs_per_section = secs_per_beat * BEATS_PER_SECTION
+		var section = int(pos / secs_per_section)
+		if section >= _target_section or pos < _last_pos - 1.0:
 			var scene = _pending_scene
 			var track = _pending_track
 			_pending_scene = ""
 			_pending_track = ""
 			_pending_carry = false
+			_target_section = -1
 			play_track(track)
 			get_tree().change_scene_to_file(scene)
+
 	_last_pos = pos
