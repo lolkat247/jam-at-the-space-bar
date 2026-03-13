@@ -1,5 +1,8 @@
 extends Area2D
 
+@export_file("*.tscn") var target_scene: String = ""
+@export var target_track: String = ""
+
 var _shaking: bool = false
 var _shake_start: float = 0.0
 var _player: Node2D
@@ -20,7 +23,7 @@ func _on_body_entered(body: Node2D) -> void:
 		body.set_process(false)
 		body.set_physics_process(false)
 		_player_base_pos = body.position
-		MusicManager.transition_at_loop_end("res://overworld/test_overworld.tscn", "forage")
+		MusicManager.transition_at_loop_end(target_scene, target_track)
 
 
 func _process(_delta: float) -> void:

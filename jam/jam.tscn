@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bumolss07sbix"]
+
+[ext_resource type="Script" uid="uid://cjuw6tc70rlg7" path="res://jam/jam.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://ds2ud07njv57c" path="res://sprites/basketball_jam.png" id="2_texture"]
+
+[node name="Jam" type="Node2D" unique_id=166562126]
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1386400557]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_texture")
