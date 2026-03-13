@@ -22,6 +22,7 @@ BeatClock="*res://globals/beat_clock.gd"
 MusicManager="*res://globals/music_manager.gd"
 TileMovementManager="*res://globals/tile_movement_manager.gd"
 Inventory="*uid://okkpey8tmmjr"
+GameState="*res://globals/game_state.gd"
 
 [display]
 
