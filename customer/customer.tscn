@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://b7okvjbnx2qvu"]
+
+[ext_resource type="Script" uid="uid://dsv07u22rewa7" path="res://customer/customer.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://decnvq5nurpuh" path="res://sprites/toast_customer.png" id="2_texture"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cust"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_texture")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cust"]
+
+[node name="Customer" type="CharacterBody2D" unique_id=1301581151]
+script = ExtResource("1_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1567984387]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_cust")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1041554031]
+shape = SubResource("RectangleShape2D_cust")
