@@ -2,6 +2,12 @@ extends CharacterBody2D
 
 var _queued_direction: Vector2i = Vector2i.ZERO
 var _is_moving: bool = false
+@onready var ray_cast = get_node_or_null("RayCast2D") as RayCast2D
+
+var colliding = null
+var col_point = null
+var local_col_point = null
+
 
 var _facing_textures := {
 	Vector2i.DOWN: preload("res://sprites/astronaut_chef.png"),
@@ -32,11 +38,22 @@ func _process(_delta: float) -> void:
 		_set_facing(Vector2i.UP)
 
 
+#func _physics_process(delta: float) -> void:
+	#if ray_cast.is_colliding():
+		#colliding = ray_cast.get_collider()
+		#col_point = ray_cast.get_collision_point()
+		#local_col_point = to_local(col_point)
+
+
+
 func _set_facing(dir: Vector2i) -> void:
 	$AnimatedSprite2D.sprite_frames.set_frame("default", 0, _facing_textures[dir])
 
 
 func _on_beat() -> void:
+	var tile_size = Global.TILE_SIZE
+	if get_parent() is Node and get_parent().name == "TestOverworld":
+		tile_size = Global.OVERWORLD_TILE_SIZE
 	if _queued_direction == Vector2i.ZERO:
 		return
 	if _is_moving:
@@ -45,14 +62,16 @@ func _on_beat() -> void:
 	var dir := _queued_direction
 	_queued_direction = Vector2i.ZERO
 
-	var tile_size = Global.TILE_SIZE
-	if get_parent() is Node and get_parent().name == "TestOverworld":
-		tile_size = Global.OVERWORLD_TILE_SIZE
+
 	var target_pos: Vector2 = position + Vector2(dir * tile_size)
-
-	# TODO: collision check — depends on tilemap being set up
-	# see task "Player — grid movement collision check"
-
+	ray_cast.target_position = Vector2(dir * (tile_size))
+	
+	if ray_cast.is_colliding():
+		print("colliding")
+		colliding = ray_cast.get_collider()
+		col_point = ray_cast.get_collision_point()
+		local_col_point = to_local(col_point)
+	
 	_is_moving = true
 	var duration: float = (60.0 / maxf(BeatClock.bpm, 1.0)) * TileMovementManager.tween_fraction
 	var tween := create_tween()

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://oum2d2metg33"]
+
+[ext_resource type="PackedScene" uid="uid://dyn7jrku6byol" path="res://player/Player.tscn" id="1_adjed"]
+[ext_resource type="PackedScene" uid="uid://d1i0u875ex0as" path="res://collision/tree_collision.tscn" id="2_map6v"]
+[ext_resource type="PackedScene" uid="uid://dagqmccdxnfcc" path="res://collision/non_collision_tree.tscn" id="3_map6v"]
+
+[node name="TestCollision" type="Node" unique_id=1135632908]
+
+[node name="Player" parent="." unique_id=1628946273 instance=ExtResource("1_adjed")]
+position = Vector2(416, 224)
+
+[node name="TreeCollision" parent="." unique_id=1327236977 instance=ExtResource("2_map6v")]
+position = Vector2(512, 128)
+
+[node name="NonCollisionTree" parent="." unique_id=491181285 instance=ExtResource("3_map6v")]
+position = Vector2(320, 192)
