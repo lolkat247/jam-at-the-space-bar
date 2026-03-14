@@ -377,14 +377,15 @@ texture = ExtResource("1_47g53")
 sources/0 = SubResource("TileSetAtlasSource_t0abo")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_47g53"]
-size = Vector2(47, 50)
+size = Vector2(47, 16)
 
 [node name="Tree" type="Area2D" unique_id=674090354]
+collision_layer = 2
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1604042246]
 tile_map_data = PackedByteArray("AAAAAP3/AAAHAAAAAAAAAP7/AAAHAAEAAAAAAP//AAAHAAIAAAABAP3/AAAIAAAAAAABAP7/AAAIAAEAAAABAP//AAAIAAIAAAACAP3/AAAJAAAAAAACAP7/AAAJAAEAAAACAP//AAAJAAIAAAA=")
 tile_set = SubResource("TileSet_o7456")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1927115936]
-position = Vector2(23.5, -25)
+position = Vector2(23.5, -8)
 shape = SubResource("RectangleShape2D_47g53")

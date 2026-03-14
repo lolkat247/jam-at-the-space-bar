@@ -4161,6 +4161,7 @@ normal = Vector2(3, 0)
 distance = -7.3333335
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_77b82"]
+distance = 14.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_56wqm"]
 distance = 209.00003
@@ -4227,6 +4228,7 @@ position = Vector2(234, 552)
 shape = SubResource("WorldBoundaryShape2D_77b82")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D" unique_id=582589743]
+position = Vector2(450, 14)
 rotation = -3.1415927
 shape = SubResource("WorldBoundaryShape2D_56wqm")
 

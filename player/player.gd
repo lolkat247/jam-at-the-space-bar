@@ -67,7 +67,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	_queued_direction = Vector2i.ZERO
 
 	var target_pos: Vector2 = position + Vector2(dir * tile_size)
-	ray_cast.target_position = Vector2(dir * (tile_size /6) + dir * 5)
+	ray_cast.target_position = Vector2(dir * (tile_size /6) + dir * 2)
 	ray_cast.position = Vector2(dir * (tile_size / 8))
 	ray_cast.force_raycast_update()
 	if ray_cast.is_colliding():
