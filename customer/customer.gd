@@ -91,7 +91,7 @@ func _on_beat() -> void:
 			.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 		arrow_tween.tween_property(_arrow, "position:y", -80.0, 0.5)\
 			.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
-
+			
 	if _queued_direction == Vector2i.ZERO and _move_queue.size() > 0:
 		var next_dir = _move_queue.pop_front()
 		_queued_direction = next_dir
@@ -102,9 +102,28 @@ func _on_beat() -> void:
 			return
 		if not _order_shown and not _served and _move_queue.size() == 0:
 			_show_order()
+		
+		
+		#ugly
+		if not _is_moving:
+			# TOAST BOUNCY BOUNCE BOUNCE ON THAT SHI
+			var toast_sprite = $AnimatedSprite2D
+			_is_moving = true
+			var toast_tween := create_tween()
+			var start_y = toast_sprite.position.y
+			toast_tween.tween_property(toast_sprite, "position:y", start_y - 16.0, 0.08)\
+				.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+			toast_tween.tween_property(toast_sprite, "position:y", start_y, 0.08)\
+				.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+			
+			toast_tween.finished.connect(_on_tween_finished)
+		
 		return
 	if _is_moving:
 		return
+		
+	
+	
 
 	var dir := _queued_direction
 	_queued_direction = Vector2i.ZERO
