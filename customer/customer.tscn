@@ -25,28 +25,33 @@ script = ExtResource("1_script")
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_cust")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1041554031]
-shape = SubResource("RectangleShape2D_cust")
-
-[node name="OrderBubble" type="Node2D" parent="."]
+[node name="OrderBubble" type="Node2D" parent="AnimatedSprite2D" unique_id=1543535342]
 visible = false
-position = Vector2(0, -70)
+position = Vector2(0, -340)
+scale = Vector2(5, 5)
 
-[node name="BubbleBg" type="Sprite2D" parent="OrderBubble"]
-scale = Vector2(0.28, 0.14)
+[node name="BubbleBg" type="Sprite2D" parent="AnimatedSprite2D/OrderBubble" unique_id=1345352704]
+position = Vector2(87, -3)
+scale = Vector2(-0.28, 0.28)
 texture = ExtResource("3_textbox")
 
-[node name="Fruit1" type="Sprite2D" parent="OrderBubble"]
-position = Vector2(-30, -2)
-scale = Vector2(0.035, 0.035)
+[node name="Fruit1" type="Sprite2D" parent="AnimatedSprite2D/OrderBubble/BubbleBg" unique_id=1545527226]
+position = Vector2(133.571, -42.857)
+rotation = 3.1415927
+scale = Vector2(0.15, -0.15)
 texture = ExtResource("4_fruit")
 
-[node name="Fruit2" type="Sprite2D" parent="OrderBubble"]
-position = Vector2(0, -2)
-scale = Vector2(0.035, 0.035)
+[node name="Fruit2" type="Sprite2D" parent="AnimatedSprite2D/OrderBubble/BubbleBg" unique_id=830935846]
+position = Vector2(0, -42.857147)
+rotation = 3.1415927
+scale = Vector2(0.15, -0.15)
 texture = ExtResource("4_fruit")
 
-[node name="Fruit3" type="Sprite2D" parent="OrderBubble"]
-position = Vector2(30, -2)
-scale = Vector2(0.035, 0.035)
+[node name="Fruit3" type="Sprite2D" parent="AnimatedSprite2D/OrderBubble/BubbleBg" unique_id=851365902]
+position = Vector2(-133.571, -42.857)
+rotation = 3.1415927
+scale = Vector2(0.15, -0.15)
 texture = ExtResource("4_fruit")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1041554031]
+shape = SubResource("RectangleShape2D_cust")
