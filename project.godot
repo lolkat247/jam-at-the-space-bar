@@ -21,12 +21,18 @@ Global="*res://globals/global.gd"
 BeatClock="*res://globals/beat_clock.gd"
 MusicManager="*res://globals/music_manager.gd"
 TileMovementManager="*res://globals/tile_movement_manager.gd"
+Inventory="*uid://okkpey8tmmjr"
+GameState="*res://globals/game_state.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
+
+[editor]
+
+version_control/autoload_on_startup=true
 
 [input]
 
@@ -56,6 +62,11 @@ space_press={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="walls"
+2d_physics/layer_2="barriers"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
@@ -63,3 +74,6 @@ space_press={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+rendering_device/driver.windows="d3d12"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
