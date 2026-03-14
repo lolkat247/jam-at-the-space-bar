@@ -24,6 +24,8 @@ var _facing_textures := {
 
 
 func _ready() -> void:
+	if GameState.phase == "bar" && GameState.prev_phase == "overworld":
+		position = GameState.player_last_pos
 	position = TileMovementManager._snap_to_grid(position)
 
 

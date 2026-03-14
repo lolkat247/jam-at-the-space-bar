@@ -397,7 +397,6 @@ distance = -630.0
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_f1dk0"]
 
 [node name="TestOverworld" type="Node" unique_id=661245982]
-script = SubResource("GDScript_v1uq4")
 
 [node name="BackgroundGreen" parent="." unique_id=691466864 instance=ExtResource("1_8bxaf")]
 scale = Vector2(4, 4)

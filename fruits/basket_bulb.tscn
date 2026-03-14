@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d37dwfxksjt2q"]
 
 [ext_resource type="Texture2D" uid="uid://fageadtnel2r" path="res://sprites/Fruit+.png" id="1_1lpxq"]
-[ext_resource type="Script" uid="uid://bd6xvvxkn5gdf" path="res://fruits/basket_bulb.gd" id="1_i1q84"]
+[ext_resource type="Script" uid="uid://cehdyob56gvup" path="res://fruits/basket_bulb.gd" id="1_i1q84"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i1q84"]
 atlas = ExtResource("1_1lpxq")

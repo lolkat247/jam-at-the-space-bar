@@ -65,6 +65,13 @@ func transition_at_loop_end(scene_path: String, track_name: String, carry: bool 
 	_pending_packed = load(scene_path)
 	_pending_track = track_name
 	_pending_carry = carry
+
+	GameState.prev_phase = GameState.phase
+	if scene_path.get_basename().ends_with("tavern"):
+		GameState.phase = "bar"
+	elif scene_path.get_basename().ends_with("overworld"):
+		GameState.phase = "overworld"
+	
 	# Compute target section: next 2-bar boundary, but if less than 1 bar away, skip to the one after
 	var pos = _get_active_player().get_playback_position()
 	var secs_per_beat = 60.0 / BeatClock.bpm

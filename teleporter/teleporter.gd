@@ -38,6 +38,8 @@ func _on_body_entered(body: Node2D) -> void:
 		body.set_process(false)
 		body.set_physics_process(false)
 		_player_base_pos = body.position
+		if GameState.phase == "bar":
+			GameState.player_last_pos = body.position + Vector2(-128, 0)
 		MusicManager.transition_at_loop_end(target_scene, target_track)
 
 

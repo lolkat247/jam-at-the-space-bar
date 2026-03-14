@@ -15,6 +15,7 @@ func _on_play_pressed() -> void:
 	_vibrate_start = Time.get_ticks_msec() / 1000.0
 	$PlayButton.scale = Vector2.ONE
 	MusicManager.transition_at_loop_end("res://tavern/tavern.tscn", "bar")
+	GameState.phase = "bar"
 
 
 func _process(_delta: float) -> void:

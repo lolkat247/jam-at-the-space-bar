@@ -151,7 +151,7 @@ Example:
 [ ] Game state manager
 - Desc: Tracks whether the player is in the bar phase or overworld phase. Autoload or singleton.
 - Assignee: Ethan
-- Status: In Progress
+- Status: Done
 
 [x] Bar — layout + tilemap
 - Desc: Tilemap for the bar scene with designated zones: customer area, teleporter, jam-making, trash.
