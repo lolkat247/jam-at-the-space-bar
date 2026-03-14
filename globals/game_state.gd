@@ -22,9 +22,9 @@ var _phase_before_pause: String = ""
 func craft_jam(fruit_name: String, jam_name: String) -> bool:
 	if not Inventory.has_fruit(fruit_name, 3):
 		return false
+	held_jam = jam_name
 	Inventory.remove_fruit(fruit_name, 3)
 	Inventory.add_jam(jam_name)
-	held_jam = jam_name
 	add_score()
 	return true
 
