@@ -10,9 +10,9 @@ var _is_moving = false
 
 func _on_body_entered(body):
 	emit_signal("fruit_collected", fruit_type)
-	Inventory.add_fruit(fruit_type)
-	# Remove the element from memory
-	queue_free()
+	if Inventory.add_fruit(fruit_type):
+		# Remove the element from memory only when the pickup succeeds.
+		queue_free()
 	
 func in_bounds(target_pos: Vector2) -> bool:
 	return (target_pos.x < bounds_bottom_right.x and target_pos.y < bounds_bottom_right.y) \
