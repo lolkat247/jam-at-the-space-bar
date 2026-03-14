@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b7okvjbnx2qvu" path="res://customer/customer.tscn" id="5_0xd7u"]
 [ext_resource type="PackedScene" uid="uid://c17gbo3gu0ism" path="res://jam-station/jam_station.tscn" id="6_jamstation"]
 [ext_resource type="Texture2D" uid="uid://bowkytnxxwd3h" path="res://sprites/galaxy_window.png" id="7_galaxy"]
-[ext_resource type="PackedScene" uid="uid://dakw5v2xknfo7" path="res://pause_menu/pause_menu.tscn" id="8_56wqm"]
+[ext_resource type="PackedScene" uid="uid://dpf1gasbk3t8l" path="res://pause_menu/pause_menu_start.tscn" id="8_56wqm"]
 [ext_resource type="PackedScene" uid="uid://c74y1yct80twx" path="res://inventory/inventory_display.tscn" id="8_77b82"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vh57q"]

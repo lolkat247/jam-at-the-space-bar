@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c1wvqsawxkmqf" path="res://fruits/fruit_manager.tscn" id="4_jp44k"]
 [ext_resource type="PackedScene" uid="uid://b3nj7t4j1n8cs" path="res://teleporter/teleporter.tscn" id="4_teleporter"]
 [ext_resource type="PackedScene" uid="uid://c74y1yct80twx" path="res://inventory/inventory_display.tscn" id="6_3xbq8"]
-[ext_resource type="PackedScene" uid="uid://dakw5v2xknfo7" path="res://pause_menu/pause_menu.tscn" id="6_v1uq4"]
+[ext_resource type="PackedScene" uid="uid://dpf1gasbk3t8l" path="res://pause_menu/pause_menu_start.tscn" id="6_f1dk0"]
 [ext_resource type="PackedScene" uid="uid://cu36dfj1v6n3u" path="res://overworld/Tree.tscn" id="7_f1dk0"]
 [ext_resource type="PackedScene" uid="uid://3npx6fo8xv8h" path="res://overworld/statue.tscn" id="8_f1dk0"]
 
@@ -830,12 +830,7 @@ shape = SubResource("WorldBoundaryShape2D_f1dk0")
 
 [node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=176120097]
 
-[node name="PauseMenu" parent="CanvasGroup" unique_id=1356844916 instance=ExtResource("6_v1uq4")]
-offset_left = 100.0
-offset_top = 19.0
-offset_right = 100.0
-offset_bottom = 19.0
-scale = Vector2(0.9910607, 1.0103233)
+[node name="PauseMenu" parent="CanvasGroup" unique_id=1356844916 instance=ExtResource("6_f1dk0")]
 
 [node name="InventoryHUD" parent="." unique_id=134446276 instance=ExtResource("6_3xbq8")]
 

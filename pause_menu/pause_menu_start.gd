@@ -24,8 +24,6 @@ func testEsc():
 func _on_resume_pressed() -> void:
 	resume()
 
-
-
 func _on_quit_pressed() -> void:
 	get_tree().quit()
 
