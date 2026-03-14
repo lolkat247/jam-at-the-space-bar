@@ -10,6 +10,7 @@ region = Rect2(544, 16, 16, 16)
 [sub_resource type="CircleShape2D" id="CircleShape2D_1lpxq"]
 
 [node name="BasketBulb" type="Area2D" unique_id=313780979]
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_i1q84")
 metadata/_edit_group_ = true
 
@@ -24,4 +25,5 @@ scale = Vector2(1.6, 1.6)
 shape = SubResource("CircleShape2D_1lpxq")
 
 [node name="CollisionPredictor" type="RayCast2D" parent="." unique_id=96662962]
+scale = Vector2(0.67, 0.67)
 collide_with_areas = true
