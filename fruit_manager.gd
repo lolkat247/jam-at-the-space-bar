@@ -3,6 +3,9 @@ extends Node
 # not global because likely to change
 var max_fruits = 5
 
+# offset so sprite is centered in grid
+var offset = Vector2(Global.TILE_SIZE / 2 - 5, Global.TILE_SIZE / 2 - 5)
+
 func get_rand_tile_pos(left_corner: Vector2, right_corner: Vector2) -> Vector2:
 	var num_tiles_x: int = (right_corner.x - left_corner.x) / Global.TILE_SIZE
 	var num_tiles_y: int = (right_corner.y - left_corner.y) / Global.TILE_SIZE
@@ -47,6 +50,6 @@ func _ready() -> void:
 		
 		chosen_cords.append(rand_tile)
 		
-		fruit.position = rand_tile
+		fruit.position = rand_tile + offset
 		
 		add_child(fruit)
