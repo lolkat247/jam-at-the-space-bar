@@ -21,6 +21,13 @@ func _ready() -> void:
 	position = TileMovementManager._snap_to_grid(position)
 	BeatClock.beat.connect(_on_beat)
 
+	if not GameState.current_order.is_empty():
+		position = _compute_final_position()
+		_move_queue.clear()
+		_order_shown = true
+		_set_facing(Vector2i.LEFT)
+		$AnimatedSprite2D/OrderBubble.visible = true
+
 
 func queue_direction(dir: Vector2i) -> void:
 	_queued_direction = dir
@@ -60,11 +67,20 @@ func _on_tween_finished() -> void:
 	_is_moving = false
 
 
+func _compute_final_position() -> Vector2:
+	var start := TileMovementManager._snap_to_grid(position)
+	var offset := Vector2i.ZERO
+	for dir in _move_queue:
+		offset += dir
+	return start + Vector2(offset * Global.TILE_SIZE)
+
+
 func _show_order() -> void:
 	_order_shown = true
-	GameState.current_order = {
-		"fruit": "Basketbulb",
-		"jam": "Basketball Jam",
-		"count": 3,
-	}
+	if GameState.current_order.is_empty():
+		GameState.current_order = {
+			"fruit": "Basketbulb",
+			"jam": "Basketball Jam",
+			"count": 3,
+		}
 	$AnimatedSprite2D/OrderBubble.visible = true
