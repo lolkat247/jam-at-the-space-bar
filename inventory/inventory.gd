@@ -11,10 +11,22 @@ var fruit_counts: Dictionary[String, int] = {
 	"BasketBulb": 0
 }
 
+# Tracks the maximum allowed count for each fruit type.
+# Change these values later if different fruit types should have different caps.
+var fruit_max_counts: Dictionary[String, int] = {
+	"BasketBulb": 5
+}
+
 # Tracks how many of each jam type the player currently has.
 # For now there is only one jam type, but this is set up to allow more later.
 var jam_counts: Dictionary[String, int] = {
 	"BasketBulb Jam": 0
+}
+
+# Tracks the maximum allowed count for each jam type.
+# Change these values later if different jam types should have different caps.
+var jam_max_counts: Dictionary[String, int] = {
+	"BasketBulb Jam": 5
 }
 
 func add_fruit(fruit_type: String, amount: int = 1) -> bool:
@@ -28,8 +40,21 @@ func add_fruit(fruit_type: String, amount: int = 1) -> bool:
 		push_error("add_fruit amount must be at least 1. Got %d." % amount)
 		return false
 	
-	# Increase the count for the given fruit type.
-	fruit_counts[fruit_type] += amount
+	# Reject fruit types that do not have a max count defined.
+	if not fruit_max_counts.has(fruit_type):
+		push_error("No max count defined for fruit type: %s. Valid fruit max types: %s" % [fruit_type, fruit_max_counts.keys()])
+		return false
+	
+	# If the fruit is already at max count, do nothing.
+	if fruit_counts[fruit_type] >= fruit_max_counts[fruit_type]:
+		return false
+	
+	# Increase the count for the given fruit type, but do not exceed the max count.
+	var new_count: int = fruit_counts[fruit_type] + amount
+	if new_count > fruit_max_counts[fruit_type]:
+		new_count = fruit_max_counts[fruit_type]
+	
+	fruit_counts[fruit_type] = new_count
 	
 	# Notify anything listening that the inventory changed.
 	inventory_changed.emit()
@@ -92,8 +117,21 @@ func add_jam(jam_type: String, amount: int = 1) -> bool:
 		push_error("add_jam amount must be at least 1. Got %d." % amount)
 		return false
 	
-	# Increase the count for the given jam type.
-	jam_counts[jam_type] += amount
+	# Reject jam types that do not have a max count defined.
+	if not jam_max_counts.has(jam_type):
+		push_error("No max count defined for jam type: %s. Valid jam max types: %s" % [jam_type, jam_max_counts.keys()])
+		return false
+	
+	# If the jam is already at max count, do nothing.
+	if jam_counts[jam_type] >= jam_max_counts[jam_type]:
+		return false
+	
+	# Increase the count for the given jam type, but do not exceed the max count.
+	var new_count: int = jam_counts[jam_type] + amount
+	if new_count > jam_max_counts[jam_type]:
+		new_count = jam_max_counts[jam_type]
+	
+	jam_counts[jam_type] = new_count
 	
 	# Notify anything listening that the inventory changed.
 	inventory_changed.emit()
