@@ -12,6 +12,6 @@ scale = Vector2(20, 20)
 
 [node name="FruitTimer" type="Timer" parent="." unique_id=602364628]
 
-[node name="BasketBulb" parent="." unique_id=313780979 instance=ExtResource("3_h2yge")]
+[node name="Basketbulb" parent="." unique_id=313780979 instance=ExtResource("3_h2yge")]
 
 [connection signal="timeout" from="FruitTimer" to="." method="_on_fruit_timer_timeout"]

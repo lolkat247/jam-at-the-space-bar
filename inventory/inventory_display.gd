@@ -45,19 +45,19 @@ func _process(_delta: float) -> void:
 	# Temporary test controls.
 	# ui_right adds a fruit.
 	if Input.is_action_just_pressed("ui_right"):
-		Inventory.add_fruit("BasketBulb", 1)
+		Inventory.add_fruit("Basketbulb", 1)
 
 	# ui_left removes a fruit.
 	if Input.is_action_just_pressed("ui_left"):
-		Inventory.remove_fruit("BasketBulb", 1)
+		Inventory.remove_fruit("Basketbulb", 1)
 
 	# ui_up adds a jam.
 	if Input.is_action_just_pressed("ui_up"):
-		Inventory.add_jam("BasketBulb Jam", 1)
+		Inventory.add_jam("Basketbulb Jam", 1)
 
 	# ui_down removes a jam.
 	if Input.is_action_just_pressed("ui_down"):
-		Inventory.remove_jam("BasketBulb Jam", 1)
+		Inventory.remove_jam("Basketbulb Jam", 1)
 
 func _rebuild_display() -> void:
 	# Clear both icon columns before rebuilding them from inventory state.
@@ -65,8 +65,8 @@ func _rebuild_display() -> void:
 	_clear_list(fruit_list)
 
 	# Get the current jam and fruit counts from inventory.
-	var jam_count: int = Inventory.get_jam_count("BasketBulb Jam")
-	var fruit_count: int = Inventory.get_fruit_count("BasketBulb")
+	var jam_count: int = Inventory.get_jam_count("Basketbulb Jam")
+	var fruit_count: int = Inventory.get_fruit_count("Basketbulb")
 
 	# Only show the jam column if there is at least one jam.
 	jam_list.visible = jam_count > 0

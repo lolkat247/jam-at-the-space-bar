@@ -2,7 +2,7 @@ extends Area2D
 
 signal fruit_collected(fruit_type)
 
-@export var fruit_type: String = "BasketBulb"
+@export var fruit_type: String = "Basketbulb"
 @export var bounds_top_left = Vector2.ZERO
 @export var bounds_bottom_right = Vector2(DisplayServer.window_get_size())
 

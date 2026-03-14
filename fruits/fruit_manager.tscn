@@ -6,7 +6,7 @@
 [node name="FruitManager" type="Node" unique_id=760958291]
 script = ExtResource("1_fdfvb")
 
-[node name="BasketBulb" parent="." unique_id=313780979 instance=ExtResource("2_f8pom")]
+[node name="Basketbulb" parent="." unique_id=313780979 instance=ExtResource("2_f8pom")]
 visibility_layer = 0
 position = Vector2(36, 29)
 

@@ -26,5 +26,5 @@ func _on_body_entered(body: Node2D) -> void:
 func _try_craft() -> void:
 	if GameState.held_jam != "":
 		return
-	if GameState.craft_jam("basketbulb", "Basketball Jam"):
+	if GameState.craft_jam("Basketbulb", "Basketbulb Jam"):
 		jam_crafted.emit()
