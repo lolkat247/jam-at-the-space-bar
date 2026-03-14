@@ -4154,6 +4154,11 @@ texture = ExtResource("2_bg")
 [sub_resource type="TileSet" id="TileSet_ikvmv"]
 sources/1 = SubResource("TileSetAtlasSource_vh57q")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ikvmv"]
+normal = Vector2(3, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_77b82"]
+
 [node name="Tavern" type="Node2D" unique_id=1550033882]
 script = ExtResource("1_script")
 
@@ -4190,3 +4195,13 @@ target_track = "forage"
 [node name="Player" parent="." unique_id=460959443 instance=ExtResource("3_player")]
 position = Vector2(101, 380)
 scale = Vector2(6, 6)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1527082242]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1838838533]
+shape = SubResource("WorldBoundaryShape2D_ikvmv")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=438390628]
+position = Vector2(234, 552)
+shape = SubResource("WorldBoundaryShape2D_77b82")
