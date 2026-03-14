@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://b3nj7t4j1n8cs"]
 
-[ext_resource type="Script" uid="uid://ddsbryy5s2m67" path="res://teleporter/teleporter.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://bsmf5vvmo2q17" path="res://teleporter/teleporter.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://s3fc6600xhfr" path="res://sprites/teleporter_pad.png" id="2_texture"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tp"]
-size = Vector2(34, 33)
+size = Vector2(34, 25.641026)
 
 [node name="Teleporter" type="Area2D" unique_id=492473197]
 script = ExtResource("1_script")
@@ -13,6 +13,12 @@ script = ExtResource("1_script")
 scale = Vector2(0.057, 0.057)
 texture = ExtResource("2_texture")
 
+[node name="Glow" type="Sprite2D" parent="."]
+modulate = Color(0.5, 0.85, 1, 0.15)
+scale = Vector2(0.065, 0.065)
+texture = ExtResource("2_texture")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=360526198]
-position = Vector2(0, 0.5)
+position = Vector2(0, 1.9999998)
+scale = Vector2(0.78, 0.78)
 shape = SubResource("RectangleShape2D_tp")

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://c74y1yct80twx"]
+
+[ext_resource type="Script" uid="uid://bci2xacaeq1u4" path="res://inventory/inventory_display.gd" id="1_1vwmw"]
+[ext_resource type="Texture2D" uid="uid://b7grg8h0cpp18" path="res://sprites/a_basketball_fruit.png" id="2_vf5lj"]
+[ext_resource type="Texture2D" uid="uid://ds2ud07njv57c" path="res://sprites/basketball_jam.png" id="3_aq1nj"]
+
+[node name="InventoryHUD" type="CanvasLayer" unique_id=134446276]
+script = ExtResource("1_1vwmw")
+fruit_icon_texture = ExtResource("2_vf5lj")
+jam_icon_texture = ExtResource("3_aq1nj")
+
+[node name="HUDRoot" type="Control" parent="." unique_id=1413624361]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1234.0
+offset_top = 4.0
+offset_right = 1274.0
+offset_bottom = 44.0
+
+[node name="ItemColumns" type="HBoxContainer" parent="HUDRoot" unique_id=2064877759]
+layout_mode = 0
+offset_right = 4.0
+
+[node name="JamList" type="VBoxContainer" parent="HUDRoot/ItemColumns" unique_id=1540705920]
+layout_mode = 2
+
+[node name="FruitList" type="VBoxContainer" parent="HUDRoot/ItemColumns" unique_id=93774098]
+layout_mode = 2

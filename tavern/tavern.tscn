@@ -4,20 +4,31 @@
 [ext_resource type="Texture2D" uid="uid://b2rj3ua1iq0a3" path="res://sprites/space_tavern.png" id="2_bg"]
 [ext_resource type="PackedScene" uid="uid://dyn7jrku6byol" path="res://player/Player.tscn" id="3_player"]
 [ext_resource type="PackedScene" uid="uid://b3nj7t4j1n8cs" path="res://teleporter/teleporter.tscn" id="4_teleporter"]
+[ext_resource type="PackedScene" uid="uid://b7okvjbnx2qvu" path="res://customer/customer.tscn" id="5_0xd7u"]
+[ext_resource type="PackedScene" uid="uid://c17gbo3gu0ism" path="res://jam-station/jam_station.tscn" id="6_jamstation"]
 
 [node name="Tavern" type="Node2D" unique_id=1550033882]
 script = ExtResource("1_script")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=658423916]
-position = Vector2(-58, -57)
-scale = Vector2(0.92, 0.92)
+position = Vector2(-64, -47)
 texture = ExtResource("2_bg")
 centered = false
 
 [node name="Teleporter" parent="." unique_id=1341047698 instance=ExtResource("4_teleporter")]
-position = Vector2(763, 402.00003)
+position = Vector2(845, 443)
 scale = Vector2(3.78, 3.78)
+target_scene = "res://overworld/test_overworld.tscn"
+target_track = "forage"
+
+[node name="JamStation" parent="." unique_id=45428992 instance=ExtResource("6_jamstation")]
+position = Vector2(299.00003, 342.00003)
+scale = Vector2(1.27, 1.27)
+
+[node name="Customer" parent="." unique_id=1266712280 instance=ExtResource("5_0xd7u")]
+position = Vector2(642, 778.00006)
+scale = Vector2(1.31, 1.31)
 
 [node name="Player" parent="." unique_id=460959443 instance=ExtResource("3_player")]
-position = Vector2(94, 343)
+position = Vector2(101, 380)
 scale = Vector2(0.26, 0.26)
