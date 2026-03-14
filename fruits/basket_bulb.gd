@@ -10,6 +10,7 @@ var _is_moving = false
 
 func _on_body_entered(body):
 	emit_signal("fruit_collected", fruit_type)
+	Inventory.add_fruit(fruit_type)
 	# Remove the element from memory
 	queue_free()
 	

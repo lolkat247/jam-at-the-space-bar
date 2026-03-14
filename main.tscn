@@ -8,6 +8,7 @@
 script = ExtResource("1_ig7tw")
 
 [node name="Player" parent="." unique_id=1628946273 instance=ExtResource("2_0xm2m")]
+scale = Vector2(20, 20)
 
 [node name="FruitTimer" type="Timer" parent="." unique_id=602364628]
 

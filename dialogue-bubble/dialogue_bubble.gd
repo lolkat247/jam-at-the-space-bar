@@ -33,9 +33,9 @@ func _ready():
 		fruit.custom_minimum_size = Vector2(64, 64)
 	
 	# For testing:
-	#show_order()
-	#await get_tree().create_timer(2.0).timeout
-	#hide_order()
+	show_order()
+	await get_tree().create_timer(2.0).timeout
+	hide_order()
 
 func show_order(texture: Texture2D = fruit_texture):
 	# If no texture was passed in and no default fruit_texture is assigned in the Inspector,
