@@ -4214,7 +4214,6 @@ scale = Vector2(1.31, 1.31)
 
 [node name="JamStation" parent="." unique_id=45428992 instance=ExtResource("6_jamstation")]
 position = Vector2(299.00003, 342.00003)
-scale = Vector2(1.27, 1.27)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1527082242]
 collision_layer = 2
