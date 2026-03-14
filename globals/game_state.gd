@@ -37,9 +37,11 @@ func serve_jam() -> bool:
 	if jam == current_order.get("jam", ""):
 		satisfied_customers += 1
 		add_score()
+		current_order = {}
 		return true
 	else:
 		unsatisfied_customers += 1
+		current_order = {}
 		return false
 
 
