@@ -9,6 +9,7 @@ var _move_queue: Array[Vector2i] = [
 ]
 
 var _order_shown: bool = false
+var _served: bool = false
 var _arrow: Sprite2D
 var _jam_sprite: Sprite2D
 
@@ -96,7 +97,10 @@ func _on_beat() -> void:
 		_queued_direction = next_dir
 		_set_facing(next_dir)
 	if _queued_direction == Vector2i.ZERO:
-		if not _order_shown and _move_queue.size() == 0:
+		if _served and _move_queue.size() == 0 and not _is_moving:
+			queue_free()
+			return
+		if not _order_shown and not _served and _move_queue.size() == 0:
 			_show_order()
 		return
 	if _is_moving:
@@ -166,6 +170,8 @@ func _on_player_entered(body: Node2D) -> void:
 	$AnimatedSprite2D/OrderBubble.visible = false
 	_arrow.visible = false
 	_spawn_confetti()
+	_served = true
+	_move_queue = [Vector2i.RIGHT, Vector2i.DOWN, Vector2i.DOWN, Vector2i.DOWN, Vector2i.DOWN, Vector2i.DOWN, Vector2i.DOWN, Vector2i.DOWN, Vector2i.DOWN, Vector2i.DOWN, Vector2i.DOWN, Vector2i.DOWN, Vector2i.DOWN]
 
 
 func _spawn_confetti() -> void:
