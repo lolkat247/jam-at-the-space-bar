@@ -131,11 +131,6 @@ Example:
 
 ---
 
-[ ] Overworld — 30s countdown timer
-- Desc: Timer starts on round start. When it expires, round ends.
-- Assignee: Ethan
-- Status: In Progress
-
 [ ] Overworld — round start sequence
 - Desc: "1, 2, 3, go" countdown display before round begins.
 - Assignee:
