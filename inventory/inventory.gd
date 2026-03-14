@@ -54,6 +54,7 @@ func add_fruit(fruit_type: String, amount: int = 1) -> bool:
 	if new_count > fruit_max_counts[fruit_type]:
 		new_count = fruit_max_counts[fruit_type]
 	
+	print(fruit_type + " collected! Currently ")
 	fruit_counts[fruit_type] = new_count
 	
 	# Notify anything listening that the inventory changed.

@@ -63,8 +63,8 @@ func _on_tween_finished() -> void:
 func _show_order() -> void:
 	_order_shown = true
 	GameState.current_order = {
-		"fruit": "basketbulb",
+		"fruit": "Basketbulb",
 		"jam": "Basketball Jam",
 		"count": 3,
 	}
-	$OrderBubble.visible = true
+	$AnimatedSprite2D/OrderBubble.visible = true

@@ -10,15 +10,16 @@ var _is_moving = false
 
 func _on_body_entered(body):
 	emit_signal("fruit_collected", fruit_type)
-	# Remove the element from memory
-	queue_free()
+	if Inventory.add_fruit(fruit_type):
+		# Remove the element from memory only when the pickup succeeds.
+		queue_free()
 	
 func in_bounds(target_pos: Vector2) -> bool:
 	return (target_pos.x < bounds_bottom_right.x and target_pos.y < bounds_bottom_right.y) \
 			and (target_pos.x > bounds_top_left.x and target_pos.y > bounds_top_left.y)
 
 func will_fruit_collide(ray: RayCast2D, target_dir: Vector2):
-	ray.target_position = target_dir*2
+	ray.target_position = target_dir
 	ray.force_raycast_update()
 	
 	return ray.is_colliding()
@@ -53,7 +54,7 @@ func _on_beat() -> void:
 		
 	var ray = $CollisionPredictor
 	
-	var dir = get_random_dir() * Global.TILE_SIZE
+	var dir = get_random_dir() * Global.OVERWORLD_TILE_SIZE
 	var target_pos = position + Vector2(dir)
 	
 	var uh_oh = 0
@@ -64,7 +65,7 @@ func _on_beat() -> void:
 		uh_oh += 1
 		
 		dir = get_random_dir()
-		target_pos = position + Vector2(dir * Global.TILE_SIZE)
+		target_pos = position + Vector2(dir * Global.OVERWORLD_TILE_SIZE)
 		
 	if (uh_oh >= 1000):
 		print_debug("uhoh")

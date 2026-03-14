@@ -60,6 +60,15 @@ func _ready() -> void:
 	pass
 "
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2yqxh"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3xbq8"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_v1uq4"]
+distance = -630.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_f1dk0"]
+
 [node name="TestOverworld" type="Node" unique_id=661245982]
 script = SubResource("GDScript_3xbq8")
 
@@ -78,21 +87,41 @@ position = Vector2(227.99998, 80.99999)
 [node name="FruitManager" parent="." unique_id=760958291 instance=ExtResource("4_jp44k")]
 
 [node name="Tree" parent="." unique_id=1170895010 instance=ExtResource("7_f1dk0")]
-position = Vector2(242, 245)
+position = Vector2(256, 192)
 scale = Vector2(2, 2)
 
 [node name="Tree2" parent="." unique_id=674090354 instance=ExtResource("7_f1dk0")]
-position = Vector2(587, 187)
+position = Vector2(576, 192)
 scale = Vector2(2, 2)
 
 [node name="Tree3" parent="." unique_id=865852663 instance=ExtResource("7_f1dk0")]
-position = Vector2(481, 443)
+position = Vector2(448, 448)
 scale = Vector2(2, 2)
 
 [node name="Tree4" parent="." unique_id=902628345 instance=ExtResource("7_f1dk0")]
-position = Vector2(876, 318)
+position = Vector2(896, 320)
 scale = Vector2(2, 2)
 
 [node name="Tree5" parent="." unique_id=1649827399 instance=ExtResource("7_f1dk0")]
-position = Vector2(728, 579)
+position = Vector2(768, 576)
 scale = Vector2(2, 2)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=872239779]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=328918576]
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_2yqxh")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=1830513348]
+rotation = -3.1415927
+shape = SubResource("WorldBoundaryShape2D_3xbq8")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D" unique_id=1784313544]
+position = Vector2(0, 73)
+shape = SubResource("WorldBoundaryShape2D_v1uq4")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Area2D" unique_id=903825977]
+position = Vector2(1280, -4)
+rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_f1dk0")

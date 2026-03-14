@@ -4,17 +4,17 @@ extends Node
 var max_fruits = 5
 
 # offset so sprite is centered in grid
-var offset = Vector2(Global.TILE_SIZE / 2, Global.TILE_SIZE / 2)
+var offset = Vector2(Global.OVERWORLD_TILE_SIZE/2, Global.OVERWORLD_TILE_SIZE/2)
 
 func get_rand_tile_pos(left_corner: Vector2, right_corner: Vector2) -> Vector2:
-	var num_tiles_x: int = (right_corner.x - left_corner.x) / Global.TILE_SIZE
-	var num_tiles_y: int = (right_corner.y - left_corner.y) / Global.TILE_SIZE
+	var num_tiles_x: int = (right_corner.x - left_corner.x) / Global.OVERWORLD_TILE_SIZE
+	var num_tiles_y: int = (right_corner.y - left_corner.y) / Global.OVERWORLD_TILE_SIZE
 	
 	# padding of 1 around foreground to avoid clipping
-	var rand_x = randi() % (num_tiles_x - 1) + 1
-	var rand_y = randi() % (num_tiles_y - 1) + 1
+	var rand_x = randi() % (num_tiles_x - 1) + 2
+	var rand_y = randi() % (num_tiles_y - 1) + 2
 	
-	return Vector2(rand_x*Global.TILE_SIZE, rand_y*Global.TILE_SIZE)
+	return Vector2(rand_x*Global.OVERWORLD_TILE_SIZE, rand_y*Global.OVERWORLD_TILE_SIZE)
 
 # manual deep search because objects are compared by reference
 func does_arr_contain_vec(arr: Array, vec: Vector2):
