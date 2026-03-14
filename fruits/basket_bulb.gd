@@ -19,7 +19,7 @@ func in_bounds(target_pos: Vector2) -> bool:
 			and (target_pos.x > bounds_top_left.x and target_pos.y > bounds_top_left.y)
 
 func will_fruit_collide(ray: RayCast2D, target_dir: Vector2):
-	ray.target_position = target_dir
+	ray.target_position = target_dir*2
 	ray.force_raycast_update()
 	
 	return ray.is_colliding()
