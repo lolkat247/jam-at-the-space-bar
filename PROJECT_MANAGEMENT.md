@@ -202,7 +202,7 @@ Example:
 - Assignee:
 - Status: Not Started
 
-[ ] Customer — order display
+[x] Customer — order display
 - Desc: Textbox that shows the customer's current jam request.
 - Assignee: Anthony
 - Status: Done
@@ -224,10 +224,10 @@ Example:
 
 ---
 
-[ ] HUD — inventory display
+[x] HUD — inventory display
 - Desc: CanvasLayer overlay showing current fruit counts.
-- Assignee:
-- Status: Not Started
+- Assignee: Anthony
+- Status: Done
 
 [ ] HUD — current order display
 - Desc: Shows the active customer's order on screen at all times while in the bar.
