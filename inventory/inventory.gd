@@ -8,25 +8,25 @@ signal inventory_changed
 # Tracks how many of each fruit type the player currently has.
 # For now there is only one fruit type, but this is set up to allow more later.
 var fruit_counts: Dictionary[String, int] = {
-	"BasketBulb": 0
+	"Basketbulb": 0
 }
 
 # Tracks the maximum allowed count for each fruit type.
 # Change these values later if different fruit types should have different caps.
 var fruit_max_counts: Dictionary[String, int] = {
-	"BasketBulb": 5
+	"Basketbulb": 5
 }
 
 # Tracks how many of each jam type the player currently has.
 # For now there is only one jam type, but this is set up to allow more later.
 var jam_counts: Dictionary[String, int] = {
-	"BasketBulb Jam": 0
+	"Basketbulb Jam": 0
 }
 
 # Tracks the maximum allowed count for each jam type.
 # Change these values later if different jam types should have different caps.
 var jam_max_counts: Dictionary[String, int] = {
-	"BasketBulb Jam": 5
+	"Basketbulb Jam": 5
 }
 
 func add_fruit(fruit_type: String, amount: int = 1) -> bool:
@@ -54,8 +54,10 @@ func add_fruit(fruit_type: String, amount: int = 1) -> bool:
 	if new_count > fruit_max_counts[fruit_type]:
 		new_count = fruit_max_counts[fruit_type]
 	
-	print(fruit_type + " collected! Currently ")
 	fruit_counts[fruit_type] = new_count
+	
+	#Debug
+	#print(fruit_type + " collected! Currently at " + str(fruit_counts["Basketbulb"]))
 	
 	# Notify anything listening that the inventory changed.
 	inventory_changed.emit()

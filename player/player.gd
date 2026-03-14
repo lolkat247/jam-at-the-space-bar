@@ -2,6 +2,13 @@ extends CharacterBody2D
 
 var _queued_direction: Vector2i = Vector2i.ZERO
 var _is_moving: bool = false
+@onready var ray_cast = get_node_or_null("RayCast2D") as RayCast2D
+
+
+var colliding = null
+var col_point = null
+var local_col_point = null
+
 
 const BEAT_TOLERANCE := 0.30
 const PERFECT_THRESHOLD := 0.12
@@ -38,6 +45,7 @@ func _process(_delta: float) -> void:
 		_set_facing(Vector2i.UP)
 
 
+	
 func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_action_pressed("space_press"):
 		return
@@ -46,6 +54,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if _is_moving:
 		return
 
+	var tile_size = Global.TILE_SIZE
+	if get_parent() is Node and get_parent().name == "TestOverworld":
+		tile_size = Global.OVERWORLD_TILE_SIZE
 	var phase := BeatClock.get_beat_phase()
 	var dist := minf(phase, 1.0 - phase)
 
@@ -57,22 +68,26 @@ func _unhandled_input(event: InputEvent) -> void:
 	var dir := _queued_direction
 	_queued_direction = Vector2i.ZERO
 
-	var tile_size = Global.TILE_SIZE
-	if get_parent() is Node and get_parent().name == "TestOverworld":
-		tile_size = Global.OVERWORLD_TILE_SIZE
 	var target_pos: Vector2 = position + Vector2(dir * tile_size)
-
+	ray_cast.target_position = Vector2(dir * (tile_size /6) + dir * 5)
+	ray_cast.position = Vector2(dir * (tile_size / 8))
+	ray_cast.force_raycast_update()
+	if ray_cast.is_colliding():
+		_shake()
+		return
+	
 	if dist <= PERFECT_THRESHOLD:
 		_on_perfect_hit()
 	else:
 		_on_good_hit()
-
 	_is_moving = true
 	var duration: float = (60.0 / maxf(BeatClock.bpm, 1.0)) * TileMovementManager.tween_fraction
 	var tween := create_tween()
 	tween.tween_property(self, "position", target_pos, duration)\
 		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween.finished.connect(_on_tween_finished)
+	
+
 
 
 func _set_facing(dir: Vector2i) -> void:

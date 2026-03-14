@@ -4,7 +4,22 @@
 [ext_resource type="PackedScene" uid="uid://dyn7jrku6byol" path="res://player/Player.tscn" id="2_iif1e"]
 [ext_resource type="PackedScene" uid="uid://c1wvqsawxkmqf" path="res://fruits/fruit_manager.tscn" id="4_jp44k"]
 [ext_resource type="PackedScene" uid="uid://b3nj7t4j1n8cs" path="res://teleporter/teleporter.tscn" id="4_teleporter"]
+[ext_resource type="PackedScene" uid="uid://c74y1yct80twx" path="res://inventory/inventory_display.tscn" id="6_3xbq8"]
+[ext_resource type="PackedScene" uid="uid://dakw5v2xknfo7" path="res://pause_menu/pause_menu.tscn" id="6_v1uq4"]
 [ext_resource type="PackedScene" uid="uid://cu36dfj1v6n3u" path="res://overworld/Tree.tscn" id="7_f1dk0"]
+
+[sub_resource type="GDScript" id="GDScript_v1uq4"]
+script/source = "extends Node
+"
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2yqxh"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3xbq8"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_v1uq4"]
+distance = -630.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_f1dk0"]
 
 [node name="TestOverworld" type="Node" unique_id=661245982]
 
@@ -41,3 +56,29 @@ scale = Vector2(2, 2)
 [node name="Tree5" parent="." unique_id=1649827399 instance=ExtResource("7_f1dk0")]
 position = Vector2(768, 576)
 scale = Vector2(2, 2)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=872239779]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=328918576]
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_2yqxh")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=1830513348]
+rotation = -3.1415927
+shape = SubResource("WorldBoundaryShape2D_3xbq8")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D" unique_id=1784313544]
+position = Vector2(0, 73)
+shape = SubResource("WorldBoundaryShape2D_v1uq4")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Area2D" unique_id=903825977]
+position = Vector2(1280, -4)
+rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_f1dk0")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=176120097]
+
+[node name="PauseMenu" parent="CanvasGroup" unique_id=1356844916 instance=ExtResource("6_v1uq4")]
+
+[node name="InventoryHUD" parent="." unique_id=134446276 instance=ExtResource("6_3xbq8")]

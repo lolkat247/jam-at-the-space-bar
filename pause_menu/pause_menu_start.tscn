@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://dpf1gasbk3t8l"]
+
+[ext_resource type="Shader" uid="uid://cdm24drxnt7o8" path="res://pause_menu/pause_menu.gdshader" id="1_5hbt6"]
+[ext_resource type="Script" uid="uid://de57o4sr06pya" path="res://pause_menu/pause_menu_start.gd" id="1_f5hpa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rd7dy"]
+shader = ExtResource("1_5hbt6")
+shader_parameter/lod = 0.0
+
+[sub_resource type="Animation" id="Animation_5hbt6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:use_parent_material")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PanelContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_uwtdo"]
+resource_name = "blur"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:use_parent_material")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PanelContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b4s0c"]
+_data = {
+&"RESET": SubResource("Animation_5hbt6"),
+&"blur": SubResource("Animation_uwtdo")
+}
+
+[node name="PauseMenu" type="Control" unique_id=1356844916]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f5hpa")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2043136394]
+material = SubResource("ShaderMaterial_rd7dy")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=288335307]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 201.0
+offset_top = 127.0
+offset_right = 503.02344
+offset_bottom = 273.6573
+scale = Vector2(2.8706384, 2.8706384)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=143455004]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="PanelContainer/VBoxContainer" unique_id=503371370]
+layout_mode = 2
+text = "Resume"
+
+[node name="Quit" type="Button" parent="PanelContainer/VBoxContainer" unique_id=819004736]
+layout_mode = 2
+text = "Quit"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=58011691]
+libraries/ = SubResource("AnimationLibrary_b4s0c")
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

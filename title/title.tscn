@@ -1,9 +1,10 @@
-[gd_scene format=3 uid="uid://dhjf7ydrqwtsf"]
+[gd_scene format=3 uid="uid://c8axe3en35xbh"]
 
 [ext_resource type="Script" uid="uid://cedjfuks75nte" path="res://title/title.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://b0jylf2felrmo" path="res://sprites/title_screen.png" id="2_bg"]
 [ext_resource type="Texture2D" uid="uid://lwpesibijyyr" path="res://sprites/play_button.png" id="3_btn"]
 [ext_resource type="Texture2D" uid="uid://dbotmat6oqakv" path="res://title/Screenshot 2026-03-13 at 9.16.06 PM.png" id="4_6s8lb"]
+[ext_resource type="PackedScene" uid="uid://dpf1gasbk3t8l" path="res://pause_menu/pause_menu_start.tscn" id="5_8xu2e"]
 
 [node name="Title" type="Control" unique_id=97470018]
 layout_mode = 3
@@ -29,6 +30,10 @@ scale = Vector2(1.36, 1.36)
 texture = ExtResource("2_bg")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=20620450]
+
+[node name="PauseMenu" parent="CanvasLayer" unique_id=1356844916 instance=ExtResource("5_8xu2e")]
 
 [node name="PlayButton" type="TextureButton" parent="." unique_id=1479990731]
 layout_mode = 1

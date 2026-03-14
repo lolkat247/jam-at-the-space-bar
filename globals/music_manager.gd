@@ -71,8 +71,6 @@ func transition_at_loop_end(scene_path: String, track_name: String, carry: bool 
 		GameState.phase = "bar"
 	elif scene_path.get_basename().ends_with("overworld"):
 		GameState.phase = "overworld"
-		
-	print_debug(GameState.phase)
 	
 	# Compute target section: next 2-bar boundary, but if less than 1 bar away, skip to the one after
 	var pos = _get_active_player().get_playback_position()
