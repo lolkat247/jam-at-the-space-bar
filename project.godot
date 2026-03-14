@@ -56,6 +56,11 @@ space_press={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="walls"
+2d_physics/layer_2="barriers"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
