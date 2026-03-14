@@ -61,6 +61,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	var dist := minf(phase, 1.0 - phase)
 
 	if dist >= BEAT_TOLERANCE:
+		GameState.add_score(-100)
 		_shake()
 		return
 
@@ -73,6 +74,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	ray_cast.position = Vector2(dir * (tile_size / 8))
 	ray_cast.force_raycast_update()
 	if ray_cast.is_colliding():
+		GameState.add_score(-100)
 		_shake()
 		return
 	
@@ -80,6 +82,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		_on_perfect_hit()
 	else:
 		_on_good_hit()
+	GameState.add_score(200)
 	_is_moving = true
 	var duration: float = (60.0 / maxf(BeatClock.bpm, 1.0)) * TileMovementManager.tween_fraction
 	var tween := create_tween()

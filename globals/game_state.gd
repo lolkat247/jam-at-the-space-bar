@@ -28,7 +28,6 @@ func craft_jam(fruit_name: String, jam_name: String) -> bool:
 	held_jam = jam_name
 	Inventory.remove_fruit(fruit_name, 3)
 	Inventory.add_jam(jam_name)
-	add_score()
 	return true
 
 
@@ -39,7 +38,7 @@ func serve_jam() -> bool:
 	held_jam = ""
 	if jam == current_order.get("jam", ""):
 		satisfied_customers += 1
-		add_score()
+		add_score(2000)
 		current_order = {}
 		return true
 	else:

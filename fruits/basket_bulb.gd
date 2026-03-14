@@ -11,6 +11,7 @@ var _is_moving = false
 func _on_body_entered(body):
 	emit_signal("fruit_collected", fruit_type)
 	if Inventory.add_fruit(fruit_type):
+		GameState.add_score(1000)
 		# Remove the element from memory only when the pickup succeeds.
 		queue_free()
 	

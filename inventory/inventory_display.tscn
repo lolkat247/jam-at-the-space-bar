@@ -27,17 +27,17 @@ offset_bottom = 48.0
 [node name="ScoreLabel" type="Label" parent="HUDRoot/ScorePanel" unique_id=1651391715]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
+theme_override_constants/outline_size = 16
 theme_override_fonts/font = ExtResource("4_aq1nj")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 36
 text = "Score: 0"
 
 [node name="HighScoreLabel" type="Label" parent="HUDRoot/ScorePanel" unique_id=1145597497]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
+theme_override_constants/outline_size = 16
 theme_override_fonts/font = ExtResource("4_aq1nj")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 36
 text = "High Score: 0"
 
 [node name="ItemColumns" type="HBoxContainer" parent="HUDRoot" unique_id=2064877759]
