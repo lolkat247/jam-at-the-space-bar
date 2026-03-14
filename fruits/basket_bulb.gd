@@ -56,9 +56,6 @@ func _on_beat() -> void:
 	var dir = get_random_dir() * Global.TILE_SIZE
 	var target_pos = position + Vector2(dir)
 	
-	if will_fruit_collide(ray, dir):
-			print_debug("JKGNSKGNK")
-	
 	var uh_oh = 0
 	while not in_bounds(target_pos) or will_fruit_collide(ray, dir):
 		if uh_oh > 1000:

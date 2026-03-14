@@ -2,11 +2,66 @@
 
 [ext_resource type="PackedScene" uid="uid://dr2fi8ud8jfj7" path="res://overworld/tile_map.tscn" id="1_8bxaf"]
 [ext_resource type="PackedScene" uid="uid://dyn7jrku6byol" path="res://player/Player.tscn" id="2_iif1e"]
-[ext_resource type="PackedScene" uid="uid://b7ufx4y4pf6ow" path="res://overworld/foreground_1.tscn" id="3_iif1e"]
 [ext_resource type="PackedScene" uid="uid://c1wvqsawxkmqf" path="res://fruits/fruit_manager.tscn" id="4_jp44k"]
 [ext_resource type="PackedScene" uid="uid://b3nj7t4j1n8cs" path="res://teleporter/teleporter.tscn" id="4_teleporter"]
+[ext_resource type="PackedScene" uid="uid://cu36dfj1v6n3u" path="res://overworld/Tree.tscn" id="7_f1dk0"]
+
+[sub_resource type="GDScript" id="GDScript_3xbq8"]
+script/source = "extends Node
+
+var num_trees = 5
+
+var tree_offset = -Global.TILE_SIZE
+
+func get_rand_tile_pos(left_corner: Vector2, right_corner: Vector2) -> Vector2:
+	var num_tiles_x: int = (right_corner.x - left_corner.x) / Global.TILE_SIZE
+	var num_tiles_y: int = (right_corner.y - left_corner.y) / Global.TILE_SIZE
+	
+	# padding of 1 around foreground to avoid clipping
+	var rand_x = randi() % (num_tiles_x - 1) + 2
+	var rand_y = randi() % (num_tiles_y - 1) + 2
+	
+	return Vector2(rand_x*Global.TILE_SIZE, rand_y*Global.TILE_SIZE)
+	
+# manual deep search because objects are compared by reference
+func does_arr_contain_vec(arr: Array, vec: Vector2):
+	for cur in arr:
+		if cur.x == vec.x and cur.y == vec.y:
+			return true
+	
+	return false
+
+func spawn_trees():
+	var tree = load(\"res://overwold/Tree.tscn\")
+	
+	var chosen_cords = []
+	
+	for i in range(num_trees):
+		tree.instantiate()
+		
+		# edit to size of foreground l8r because it might 
+		# be different from window size
+		var rand_tile = get_rand_tile_pos(Vector2.ZERO, DisplayServer.window_get_size())
+		var uhoh_count = 0
+		while does_arr_contain_vec(chosen_cords, rand_tile) and uhoh_count < 1000:
+			rand_tile = get_rand_tile_pos(Vector2.ZERO, DisplayServer.window_get_size())
+			uhoh_count += 1
+			
+		# will probably only trigger if u fill the map with trees
+		if uhoh_count >= 1000:
+			print_debug(\"uh oh\")
+			
+		tree.position = rand_tile + tree_offset
+		
+		add_child(tree)
+
+
+func _ready() -> void:
+	pass
+"
 
 [node name="TestOverworld" type="Node" unique_id=661245982]
+script = SubResource("GDScript_3xbq8")
 
 [node name="BackgroundGreen" parent="." unique_id=691466864 instance=ExtResource("1_8bxaf")]
 scale = Vector2(4, 4)
@@ -19,8 +74,25 @@ target_track = "bar"
 
 [node name="Player" parent="." unique_id=1628946273 instance=ExtResource("2_iif1e")]
 position = Vector2(227.99998, 80.99999)
-scale = Vector2(6, 6)
-
-[node name="Foreground1" parent="." unique_id=872954525 instance=ExtResource("3_iif1e")]
 
 [node name="FruitManager" parent="." unique_id=760958291 instance=ExtResource("4_jp44k")]
+
+[node name="Tree" parent="." unique_id=1170895010 instance=ExtResource("7_f1dk0")]
+position = Vector2(242, 245)
+scale = Vector2(2, 2)
+
+[node name="Tree2" parent="." unique_id=674090354 instance=ExtResource("7_f1dk0")]
+position = Vector2(587, 187)
+scale = Vector2(2, 2)
+
+[node name="Tree3" parent="." unique_id=865852663 instance=ExtResource("7_f1dk0")]
+position = Vector2(481, 443)
+scale = Vector2(2, 2)
+
+[node name="Tree4" parent="." unique_id=902628345 instance=ExtResource("7_f1dk0")]
+position = Vector2(876, 318)
+scale = Vector2(2, 2)
+
+[node name="Tree5" parent="." unique_id=1649827399 instance=ExtResource("7_f1dk0")]
+position = Vector2(728, 579)
+scale = Vector2(2, 2)

@@ -1,9 +1,9 @@
-[gd_scene format=4 uid="uid://b7ufx4y4pf6ow"]
+[gd_scene format=4 uid="uid://cu36dfj1v6n3u"]
 
-[ext_resource type="Texture2D" uid="uid://6a106r17rn7d" path="res://sprites/Solaria Demo Update og copy.png" id="1_gd27h"]
+[ext_resource type="Texture2D" uid="uid://6a106r17rn7d" path="res://sprites/Solaria Demo Update og copy.png" id="1_47g53"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4wd4n"]
-texture = ExtResource("1_gd27h")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t0abo"]
+texture = ExtResource("1_47g53")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -373,10 +373,18 @@ texture = ExtResource("1_gd27h")
 11:14/0 = 0
 12:14/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_6og7o"]
-sources/0 = SubResource("TileSetAtlasSource_4wd4n")
+[sub_resource type="TileSet" id="TileSet_o7456"]
+sources/0 = SubResource("TileSetAtlasSource_t0abo")
 
-[node name="Foreground1" type="TileMapLayer" unique_id=872954525]
-scale = Vector2(2, 2)
-tile_map_data = PackedByteArray("AAAGAAgAAAAHAAAAAAAGAAkAAAAHAAEAAAAGAAoAAAAHAAIAAAAHAAgAAAAIAAAAAAAHAAkAAAAIAAEAAAAHAAoAAAAIAAIAAAAIAAgAAAAJAAAAAAAIAAkAAAAJAAEAAAAIAAoAAAAJAAIAAAAVAA4AAAAHAAAAAAAVAA8AAAAHAAEAAAAVABAAAAAHAAIAAAAWAA4AAAAIAAAAAAAWAA8AAAAIAAEAAAAWABAAAAAIAAIAAAAXAA4AAAAJAAAAAAAXAA8AAAAJAAEAAAAXABAAAAAJAAIAAAAJABEAAAAHAAAAAAAJABIAAAAHAAEAAAAJABMAAAAHAAIAAAAKABEAAAAIAAAAAAAKABIAAAAIAAEAAAAKABMAAAAIAAIAAAALABEAAAAJAAAAAAALABIAAAAJAAEAAAALABMAAAAJAAIAAAAVAAYAAAAHAAAAAAAVAAcAAAAHAAEAAAAVAAgAAAAHAAIAAAAWAAYAAAAIAAAAAAAWAAcAAAAIAAEAAAAWAAgAAAAIAAIAAAAXAAYAAAAJAAAAAAAXAAcAAAAJAAEAAAAXAAgAAAAJAAIAAAAdAAsAAAAHAAAAAAAdAAwAAAAHAAEAAAAdAA0AAAAHAAIAAAAeAAsAAAAIAAAAAAAeAAwAAAAIAAEAAAAeAA0AAAAIAAIAAAAfAAsAAAAJAAAAAAAfAAwAAAAJAAEAAAAfAA0AAAAJAAIAAAAMAAMAAAAHAAAAAAAMAAQAAAAHAAEAAAAMAAUAAAAHAAIAAAANAAMAAAAIAAAAAAANAAQAAAAIAAEAAAANAAUAAAAIAAIAAAAOAAMAAAAJAAAAAAAOAAQAAAAJAAEAAAAOAAUAAAAJAAIAAAA=")
-tile_set = SubResource("TileSet_6og7o")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_47g53"]
+size = Vector2(47, 50)
+
+[node name="Tree" type="Area2D" unique_id=674090354]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1604042246]
+tile_map_data = PackedByteArray("AAAAAP3/AAAHAAAAAAAAAP7/AAAHAAEAAAAAAP//AAAHAAIAAAABAP3/AAAIAAAAAAABAP7/AAAIAAEAAAABAP//AAAIAAIAAAACAP3/AAAJAAAAAAACAP7/AAAJAAEAAAACAP//AAAJAAIAAAA=")
+tile_set = SubResource("TileSet_o7456")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1927115936]
+position = Vector2(23.5, -25)
+shape = SubResource("RectangleShape2D_47g53")
