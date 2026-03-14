@@ -4,7 +4,7 @@ extends Node
 var max_fruits = 5
 
 # offset so sprite is centered in grid
-var offset = Vector2(Global.TILE_SIZE / 2 - 5, Global.TILE_SIZE / 2 - 5)
+var offset = Vector2(Global.TILE_SIZE / 2, Global.TILE_SIZE / 2)
 
 func get_rand_tile_pos(left_corner: Vector2, right_corner: Vector2) -> Vector2:
 	var num_tiles_x: int = (right_corner.x - left_corner.x) / Global.TILE_SIZE

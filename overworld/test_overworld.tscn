@@ -19,7 +19,7 @@ target_track = "bar"
 
 [node name="Player" parent="." unique_id=1628946273 instance=ExtResource("2_iif1e")]
 position = Vector2(227.99998, 80.99999)
-scale = Vector2(0.2, 0.2)
+scale = Vector2(6, 6)
 
 [node name="Foreground1" parent="." unique_id=872954525 instance=ExtResource("3_iif1e")]
 

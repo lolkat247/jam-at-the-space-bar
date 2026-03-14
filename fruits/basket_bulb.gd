@@ -18,19 +18,10 @@ func in_bounds(target_pos: Vector2) -> bool:
 			and (target_pos.x > bounds_top_left.x and target_pos.y > bounds_top_left.y)
 
 func will_fruit_collide(ray: RayCast2D, target_dir: Vector2):
-	var collision_detected = false
-	
 	ray.target_position = target_dir*2
-	
-	ray.rotate(0.5)
-	collision_detected = collision_detected or ray.is_colliding()
-	ray.rotate(-.1)
-	collision_detected = collision_detected or ray.is_colliding()
-	ray.rotate(0.5)
-	
 	ray.force_raycast_update()
 	
-	return collision_detected
+	return ray.is_colliding()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
