@@ -4,15 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://dyn7jrku6byol" path="res://player/Player.tscn" id="2_iif1e"]
 [ext_resource type="PackedScene" uid="uid://c1wvqsawxkmqf" path="res://fruits/fruit_manager.tscn" id="4_jp44k"]
 [ext_resource type="PackedScene" uid="uid://b3nj7t4j1n8cs" path="res://teleporter/teleporter.tscn" id="4_teleporter"]
-[ext_resource type="PackedScene" uid="uid://c2wcu5aivxrmh" path="res://overworld/RoundTimer.tscn" id="6_3xbq8"]
 [ext_resource type="PackedScene" uid="uid://cu36dfj1v6n3u" path="res://overworld/Tree.tscn" id="7_f1dk0"]
 
-[sub_resource type="GDScript" id="GDScript_v1uq4"]
-script/source = "extends Node
-"
-
 [node name="TestOverworld" type="Node" unique_id=661245982]
-script = SubResource("GDScript_v1uq4")
 
 [node name="BackgroundGreen" parent="." unique_id=691466864 instance=ExtResource("1_8bxaf")]
 scale = Vector2(4, 4)
@@ -47,7 +41,3 @@ scale = Vector2(2, 2)
 [node name="Tree5" parent="." unique_id=1649827399 instance=ExtResource("7_f1dk0")]
 position = Vector2(768, 576)
 scale = Vector2(2, 2)
-
-[node name="RoundTimer" parent="." unique_id=631988601 instance=ExtResource("6_3xbq8")]
-position = Vector2(1168, 0)
-scale = Vector2(3, 3)

@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var _queued_direction: Vector2i = Vector2i.ZERO
+var _facing: Vector2i = Vector2i.UP
 var _is_moving: bool = false
 var _move_queue: Array[Vector2i] = [
 	Vector2i.UP, Vector2i.UP, Vector2i.UP, Vector2i.UP, Vector2i.UP, Vector2i.UP, Vector2i.UP, Vector2i.UP, Vector2i.UP, Vector2i.UP, Vector2i.UP, Vector2i.UP,
@@ -18,6 +19,14 @@ var _facing_textures := {
 
 
 func _ready() -> void:
+	# if customer is registered load old position
+	if GameState.current_order.get("pos"):
+		position = GameState.current_order.get("pos")
+		_move_queue = []
+	
+	if GameState.current_order.get("facing"):
+		_set_facing(GameState.current_order.get("facing"))
+	
 	position = TileMovementManager._snap_to_grid(position)
 	BeatClock.beat.connect(_on_beat)
 
@@ -28,6 +37,7 @@ func queue_direction(dir: Vector2i) -> void:
 
 
 func _set_facing(dir: Vector2i) -> void:
+	_facing = dir
 	$AnimatedSprite2D.sprite_frames.set_frame("default", 0, _facing_textures[dir])
 
 
@@ -66,5 +76,7 @@ func _show_order() -> void:
 		"fruit": "Basketbulb",
 		"jam": "Basketball Jam",
 		"count": 3,
+		"pos": position,
+		"facing": _facing
 	}
 	$AnimatedSprite2D/OrderBubble.visible = true
