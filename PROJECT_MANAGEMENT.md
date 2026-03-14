@@ -87,10 +87,10 @@ Example:
 - Assignee: Jake (started), Ethan (completed)
 - Status: Done
 
-[ ] Player — grid movement collision check
+[x] Player — grid movement collision check
 - Desc: Add collision detection to grid movement so the player can't walk through walls/obstacles. Depends on tilemap collision layers being set up. Uses move_and_collide or raycast against the tilemap.
 - Assignee: Noah
-- Status: In Progress
+- Status: Done
 
 [ ] Overworld — tilemap + tile assets
 - Desc: Grid-based tilemap for the foraging scene. Needs walkable tiles and boundaries.
@@ -109,25 +109,25 @@ Example:
 - Assignee: Noah
 - Status: Done
 
-[ ] Fruit — grid movement behavior
+[x] Fruit — grid movement behavior
 - Desc: Fruit moves one tile per beat in a pattern (random or fixed TBD). Listens to beat clock.
 - Assignee: Ethan
-- Status: Done - But no collision with foreground
+- Status: Done
 
-[ ] Fruit — spawner
+[x] Fruit — spawner
 - Desc: Places fruits on random tiles when the overworld round starts.
 - Assignee: Ethan
-- Status: Done - But no collsion with foreground
+- Status: Done
 
-[ ] Player — beat detection (catch fruit)
+[x] Player — beat detection (catch fruit)
 - Desc: When player lands on same tile as a fruit on-beat, fruit is caught and added to inventory.
-- Assignee:
-- Status: Not Started
+- Assignee: Ethan
+- Status: Done
 
-[ ] Player — inventory
+[X] Player — inventory
 - Desc: Tracks how many of each fruit the player is holding.
 - Assignee: Anthony
-- Status: In Progress
+- Status: Done
 
 ---
 
@@ -150,18 +150,18 @@ Example:
 
 [ ] Game state manager
 - Desc: Tracks whether the player is in the bar phase or overworld phase. Autoload or singleton.
-- Assignee:
-- Status: Not Started
+- Assignee: Ethan
+- Status: In Progress
 
-[ ] Bar — layout + tilemap
+[x] Bar — layout + tilemap
 - Desc: Tilemap for the bar scene with designated zones: customer area, teleporter, jam-making, trash.
 - Assignee: Jake
-- Status: In Progress (background sprite generated, tilemap not built)
+- Status: Done
 
 [ ] Bar — jam-making area
 - Desc: Interaction zone where player crafts a jam from inventory fruits.
-- Assignee:
-- Status: Not Started
+- Assignee: Jake
+- Status: In Progress
 
 [x] Bar — teleporter pad
 - Desc: Visual indicator and interaction zone for teleporting to the overworld.
@@ -187,25 +187,25 @@ Example:
 
 [ ] Jam — craft action
 - Desc: Consumes 3 fruits from inventory and produces a jam. No rhythm minigame for MVP just button press.
-- Assignee:
-- Status: Not Started
+- Assignee: Jake
+- Status: In Progress
 
 ---
 
-[ ] Customer — sprite + scene
+[x] Customer — sprite + scene
 - Desc: Single customer NPC with sprite.
 - Assignee:
-- Status: Not Started
+- Status: Done
 
 [x] Customer — order display
 - Desc: Textbox that shows the customer's current jam request.
 - Assignee: Anthony
 - Status: Done
 
-[ ] Customer — enter bar sequence
+[x] Customer — enter bar sequence
 - Desc: Customer walks in and sits when the bar scene loads.
 - Assignee:
-- Status: Not Started
+- Status: Done
 
 [ ] Customer — accept jam
 - Desc: When given the correct jam, customer reacts positively and walks away.
