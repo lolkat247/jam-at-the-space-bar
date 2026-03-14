@@ -38,13 +38,6 @@ func _process(_delta: float) -> void:
 		_set_facing(Vector2i.UP)
 
 
-#func _physics_process(delta: float) -> void:
-	#if ray_cast.is_colliding():
-		#colliding = ray_cast.get_collider()
-		#col_point = ray_cast.get_collision_point()
-		#local_col_point = to_local(col_point)
-
-
 
 func _set_facing(dir: Vector2i) -> void:
 	$AnimatedSprite2D.sprite_frames.set_frame("default", 0, _facing_textures[dir])
