@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b7okvjbnx2qvu" path="res://customer/customer.tscn" id="5_0xd7u"]
 [ext_resource type="PackedScene" uid="uid://c17gbo3gu0ism" path="res://jam-station/jam_station.tscn" id="6_jamstation"]
 [ext_resource type="Texture2D" uid="uid://bowkytnxxwd3h" path="res://sprites/galaxy_window.png" id="7_galaxy"]
+[ext_resource type="PackedScene" uid="uid://c74y1yct80twx" path="res://inventory/inventory_display.tscn" id="8_77b82"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vh57q"]
 texture = ExtResource("2_bg")
@@ -4250,3 +4251,5 @@ shape = SubResource("RectangleShape2D_56wqm")
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="Area2D" unique_id=123680083]
 position = Vector2(553, 287)
 shape = SubResource("RectangleShape2D_uplsc")
+
+[node name="InventoryHUD" parent="." unique_id=134446276 instance=ExtResource("8_77b82")]
