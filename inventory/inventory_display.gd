@@ -12,34 +12,49 @@ extends CanvasLayer
 @onready var item_columns: HBoxContainer = $HUDRoot/ItemColumns
 @onready var jam_list: VBoxContainer = $HUDRoot/ItemColumns/JamList
 @onready var fruit_list: VBoxContainer = $HUDRoot/ItemColumns/FruitList
+@onready var score_panel: VBoxContainer = $HUDRoot/ScorePanel
+@onready var score_label: Label = $HUDRoot/ScorePanel/ScoreLabel
+@onready var high_score_label: Label = $HUDRoot/ScorePanel/HighScoreLabel
 
 func _ready() -> void:
-	# Position the HUD near the top-right corner of the screen.
-	hud_root.anchor_left = 1.0
+	# Let the HUD root cover the screen so score/inventory can anchor independently.
+	hud_root.anchor_left = 0.0
 	hud_root.anchor_right = 1.0
 	hud_root.anchor_top = 0.0
 	hud_root.anchor_bottom = 0.0
-	hud_root.offset_left = -140
-	hud_root.offset_right = -16
-	hud_root.offset_top = 16
-	hud_root.offset_bottom = 400
+	hud_root.offset_left = 0
+	hud_root.offset_right = 0
+	hud_root.offset_top = 0
+	hud_root.offset_bottom = 0
 
-	# Make ItemColumns fill HUDRoot so ALIGNMENT_END has room to work with.
-	item_columns.anchor_left = 0.0
+	# Anchor the inventory block to the top-right corner.
+	item_columns.anchor_left = 1.0
 	item_columns.anchor_right = 1.0
 	item_columns.anchor_top = 0.0
-	item_columns.anchor_bottom = 1.0
-	item_columns.offset_left = 0
-	item_columns.offset_right = 0
-	item_columns.offset_top = 0
-	item_columns.offset_bottom = 0
+	item_columns.anchor_bottom = 0.0
+	item_columns.offset_left = -140
+	item_columns.offset_right = -16
+	item_columns.offset_top = 16
+	item_columns.offset_bottom = 400
 
 	# Keep the two columns pushed to the right side of HUDRoot.
 	item_columns.alignment = BoxContainer.ALIGNMENT_END
 
+	# Anchor the score block to the top-left corner.
+	score_panel.anchor_left = 0.0
+	score_panel.anchor_right = 0.0
+	score_panel.anchor_top = 0.0
+	score_panel.anchor_bottom = 0.0
+	score_panel.offset_left = 16
+	score_panel.offset_right = 208
+	score_panel.offset_top = 16
+	score_panel.offset_bottom = 64
+
 	# Rebuild the HUD whenever the inventory changes.
 	Inventory.inventory_changed.connect(_rebuild_display)
+	GameState.score_changed.connect(_update_score_display)
 	_rebuild_display()
+	_update_score_display(GameState.score, GameState.high_score)
 
 #func _process(_delta: float) -> void:
 	## Temporary test controls.
@@ -84,6 +99,11 @@ func _rebuild_display() -> void:
 
 	# Force the HBoxContainer to recalculate layout now.
 	item_columns.queue_sort()
+
+
+func _update_score_display(score: int, high_score: int) -> void:
+	score_label.text = "Score: %d" % score
+	high_score_label.text = "High Score: %d" % high_score
 
 func _clear_list(list_node: VBoxContainer) -> void:
 	# Remove all existing icons from the given vertical list immediately.

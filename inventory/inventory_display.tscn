@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bci2xacaeq1u4" path="res://inventory/inventory_display.gd" id="1_1vwmw"]
 [ext_resource type="Texture2D" uid="uid://b7grg8h0cpp18" path="res://sprites/a_basketball_fruit.png" id="2_vf5lj"]
 [ext_resource type="Texture2D" uid="uid://ds2ud07njv57c" path="res://sprites/basketball_jam.png" id="3_aq1nj"]
+[ext_resource type="FontFile" uid="uid://wnrejrm2c3ts" path="res://fonts/yoster.ttf" id="4_aq1nj"]
 
 [node name="InventoryHUD" type="CanvasLayer" unique_id=134446276]
 script = ExtResource("1_1vwmw")
@@ -17,8 +18,31 @@ offset_top = 4.0
 offset_right = 1274.0
 offset_bottom = 44.0
 
+[node name="ScorePanel" type="VBoxContainer" parent="HUDRoot" unique_id=1100994580]
+layout_mode = 0
+offset_left = -200.0
+offset_right = -8.0
+offset_bottom = 48.0
+
+[node name="ScoreLabel" type="Label" parent="HUDRoot/ScorePanel" unique_id=1651391715]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("4_aq1nj")
+theme_override_font_sizes/font_size = 26
+text = "Score: 0"
+
+[node name="HighScoreLabel" type="Label" parent="HUDRoot/ScorePanel" unique_id=1145597497]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("4_aq1nj")
+theme_override_font_sizes/font_size = 26
+text = "High Score: 0"
+
 [node name="ItemColumns" type="HBoxContainer" parent="HUDRoot" unique_id=2064877759]
 layout_mode = 0
+offset_top = 56.0
 offset_right = 4.0
 
 [node name="JamList" type="VBoxContainer" parent="HUDRoot/ItemColumns" unique_id=1540705920]

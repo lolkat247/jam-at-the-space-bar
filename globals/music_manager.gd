@@ -19,6 +19,7 @@ var tracks: Dictionary = {
 	"forage": preload("res://rendered-music/forage.wav"),
 	"forage_solo": preload("res://rendered-music/forage_solo.wav"),
 	"forage_alt": preload("res://rendered-music/forage_alt.wav"),
+	"end": preload("res://rendered-music/end.wav"),
 }
 
 # Cycle: 3x forage, then 1x solo or alt

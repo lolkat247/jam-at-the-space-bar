@@ -2,6 +2,8 @@ extends Node
 
 var player_last_pos: Vector2 = Vector2.ZERO
 
+signal score_changed(score: int, high_score: int)
+
 # Customer state
 # "fruit", "jam", "count", "pos", "facing"
 var current_order: Dictionary = {}
@@ -12,6 +14,7 @@ var held_jam: String = ""
 
 # Score
 var score: int = 0
+var high_score: int = 0
 
 # Game phase: "bar", "overworld", "paused"
 var phase: String = "bar"
@@ -51,6 +54,9 @@ func trash_jam() -> void:
 
 func add_score(points: int = 10) -> void:
 	score += points
+	if score > high_score:
+		high_score = score
+	score_changed.emit(score, high_score)
 
 
 func pause() -> void:
@@ -63,10 +69,23 @@ func unpause() -> void:
 	_phase_before_pause = ""
 
 
-func reset() -> void:
+func reset_run() -> void:
 	current_order = {}
 	satisfied_customers = 0
 	unsatisfied_customers = 0
+	held_jam = ""
 	score = 0
+	Inventory.reset()
 	phase = "bar"
 	_phase_before_pause = ""
+	score_changed.emit(score, high_score)
+
+
+func reset_session() -> void:
+	reset_run()
+	high_score = 0
+	score_changed.emit(score, high_score)
+
+
+func reset() -> void:
+	reset_run()
