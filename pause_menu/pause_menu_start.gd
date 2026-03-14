@@ -3,6 +3,7 @@ extends Control
 
 func _ready():
 	$AnimationPlayer.play("RESET")
+	self.visible = false
 
 func resume():
 	get_tree().paused = false

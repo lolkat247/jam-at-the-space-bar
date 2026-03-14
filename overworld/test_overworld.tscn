@@ -4,7 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://dyn7jrku6byol" path="res://player/Player.tscn" id="2_iif1e"]
 [ext_resource type="PackedScene" uid="uid://c1wvqsawxkmqf" path="res://fruits/fruit_manager.tscn" id="4_jp44k"]
 [ext_resource type="PackedScene" uid="uid://b3nj7t4j1n8cs" path="res://teleporter/teleporter.tscn" id="4_teleporter"]
-[ext_resource type="PackedScene" uid="uid://dakw5v2xknfo7" path="res://pause_menu/pause_menu.tscn" id="6_3xbq8"]
+[ext_resource type="PackedScene" uid="uid://c74y1yct80twx" path="res://inventory/inventory_display.tscn" id="6_3xbq8"]
+[ext_resource type="PackedScene" uid="uid://dakw5v2xknfo7" path="res://pause_menu/pause_menu.tscn" id="6_v1uq4"]
 [ext_resource type="PackedScene" uid="uid://cu36dfj1v6n3u" path="res://overworld/Tree.tscn" id="7_f1dk0"]
 
 [sub_resource type="GDScript" id="GDScript_v1uq4"]
@@ -79,4 +80,6 @@ shape = SubResource("WorldBoundaryShape2D_f1dk0")
 
 [node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=176120097]
 
-[node name="PauseMenu" parent="CanvasGroup" unique_id=1356844916 instance=ExtResource("6_3xbq8")]
+[node name="PauseMenu" parent="CanvasGroup" unique_id=1356844916 instance=ExtResource("6_v1uq4")]
+
+[node name="InventoryHUD" parent="." unique_id=134446276 instance=ExtResource("6_3xbq8")]

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b0jylf2felrmo" path="res://sprites/title_screen.png" id="2_bg"]
 [ext_resource type="Texture2D" uid="uid://lwpesibijyyr" path="res://sprites/play_button.png" id="3_btn"]
 [ext_resource type="Texture2D" uid="uid://dbotmat6oqakv" path="res://title/Screenshot 2026-03-13 at 9.16.06 PM.png" id="4_6s8lb"]
-[ext_resource type="PackedScene" path="res://pause_menu/pause_menu_start.tscn" id="5_8xu2e"]
+[ext_resource type="PackedScene" uid="uid://dpf1gasbk3t8l" path="res://pause_menu/pause_menu_start.tscn" id="5_8xu2e"]
 
 [node name="Title" type="Control" unique_id=97470018]
 layout_mode = 3

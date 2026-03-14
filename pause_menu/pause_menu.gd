@@ -3,13 +3,15 @@ extends Control
 
 func _ready():
 	$AnimationPlayer.play("RESET")
+	self.visible = false
 
 func resume():
 	get_tree().paused = false
 	$AnimationPlayer.play_backwards("blur")
-
+	self.visible = false
 
 func pause():
+	self.visible = true
 	get_tree().paused = true
 	$AnimationPlayer.play("blur")
 	
