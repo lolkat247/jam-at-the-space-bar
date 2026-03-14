@@ -136,7 +136,7 @@ func _show_order() -> void:
 	if GameState.current_order.is_empty():
 		GameState.current_order = {
 			"fruit": "Basketbulb",
-			"jam": "Basketball Jam",
+			"jam": "Basketbulb Jam",
 			"count": 3,
 			"pos": position,
 			"facing": _facing,

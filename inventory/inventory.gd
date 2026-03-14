@@ -185,3 +185,11 @@ func remove_jam(jam_type: String, amount: int = 1) -> bool:
 	# Notify anything listening that the inventory changed.
 	inventory_changed.emit()
 	return true
+
+
+func reset() -> void:
+	for fruit_type in fruit_counts.keys():
+		fruit_counts[fruit_type] = 0
+	for jam_type in jam_counts.keys():
+		jam_counts[jam_type] = 0
+	inventory_changed.emit()
