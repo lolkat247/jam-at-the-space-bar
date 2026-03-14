@@ -2,8 +2,20 @@ extends Area2D
 
 signal jam_crafted
 
+var _base_scale: Vector2
+
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
+	_base_scale = $Sprite2D.scale
+	BeatClock.beat.connect(_on_beat)
+
+
+func _on_beat() -> void:
+	var tween := create_tween()
+	tween.tween_property($Sprite2D, "scale", _base_scale * 1.12, 0.15)\
+		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property($Sprite2D, "scale", _base_scale, 0.5)\
+		.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
 
 
 func _on_body_entered(body: Node2D) -> void:
