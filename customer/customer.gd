@@ -98,6 +98,7 @@ func _on_beat() -> void:
 		_set_facing(next_dir)
 	if _queued_direction == Vector2i.ZERO:
 		if _served and _move_queue.size() == 0 and not _is_moving:
+			MusicManager.transition_at_loop_end("res://end_screen/end_screen.tscn", "end")
 			queue_free()
 			return
 		if not _order_shown and not _served and _move_queue.size() == 0:
